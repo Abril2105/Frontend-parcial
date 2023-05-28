@@ -35,52 +35,67 @@ export const FormularioLibro = ({ agregar }) => {
 
     return (
         <>
-       <div style={{ display: "flex" }}>
-      <nav style={{ backgroundColor: "#AD9978", width: "200px" }}>
-        <ul style={{ listStyleType: "none", padding: "0" }}>
-          <li>
-            <a href="#" style={{ color: "#fff", textDecoration: "none", padding: "10px" }}>Home</a>
-          </li>
-          <li>
-            <a href="#" style={{ color: "#fff", textDecoration: "none", padding: "10px" }}>Libros</a>
-          </li>
-          <li>
-            <a href="#" style={{ color: "#fff", textDecoration: "none", padding: "10px" }}>Préstamos</a>
-          </li>
-        </ul>
-      </nav>
-      </div>
 
 
-            <form onSubmit={guardarLibro} style={{ backgroundColor: "#AD9978" }}>
-                <h1 className="text-center text-light " style={{ fontSize: "100px", backgroundColor: "#AD9978" }}>Biblioteca</h1>
-                <div className="form-group input-group">
-                    <label class="input-group-text futurama " for="inputGroupSelect01" >Titulo</label>
-                    <input type="text" className="form-control" id="titulo" placeholder="Titulo" value={titulo} onChange={(event) => { setTitulo(event.target.value); habilitarButton(); }}/>
-                </div>
-                <br />
-                <div className="form-group input-group ">
-                    <label class="input-group-text futurama" for="inputGroupSelect01">Autor</label>
-                    <input type="text" className="form-control" id="autor" placeholder="Autor" value={autor} onChange={(event) => { setAutor(event.target.value); habilitarButton(); }}/>
-                </div>
-                <br />
-                <div className="form-floating">
-                    <select class="form-select" id="genero" value={genero} onChange={(event) => { setGenero(event.target.value); habilitarButton(); }}>
-                        <option selected value = "">Seleccione un genero</option>
-                        <option value="1">Ficcion</option>
-                        <option value="2">Novela</option>
-                        <option value="3">Suspenso</option>
-                        <option value="4">Fantasia</option>
-                        <option value="5">Romance</option>
-                        <option value="6">Historia</option>
-                    </select>
-                    <label for="floatingSelect">Genero</label>
-                </div>
-                <br />
-
-                <button id="registrar" type="submit" className="btn btn-primary" disabled>Registrar</button>
-            </form>
             
+                
+                <nav class="navbar navbar-expand-lg bg-light">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">NAVEGADOR</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Libros</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Rentas</a>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            
+            <div>
+                <form onSubmit={guardarLibro} style={{ backgroundColor: "#AD9978" }}>
+                    <h1 className="text-center text-light " style={{ fontSize: "100px", backgroundColor: "#AD9978" }}>Biblioteca</h1>
+                    <div className="form-group input-group">
+                        <label class="input-group-text futurama " for="inputGroupSelect01" >Titulo</label>
+                        <input type="text" className="form-control" id="titulo" placeholder="Titulo" value={titulo} onChange={(event) => setTitulo(event.target.value)} />
+                    </div>
+                    <br />
+                    <div className="form-group input-group ">
+                        <label class="input-group-text futurama" for="inputGroupSelect01">Autor</label>
+                        <input type="text" className="form-control" id="autor" placeholder="Autor" value={autor} onChange={(event) => setAutor(event.target.value)} />
+                    </div>
+
+
+
+                    <br />
+                    <div className="form-floating">
+                        <select class="form-select" id="genero" value={genero} onChange={(event) => { setGenero(event.target.value); habilitarButton(); }}>
+                            <option selected>Seleccione un genero</option>
+                            <option value="1">Ficcion</option>
+                            <option value="2">Novela</option>
+                            <option value="3">Suspenso</option>
+                            <option value="4">Fantasia</option>
+                            <option value="5">Romance</option>
+                            <option value="6">Historia</option>
+                        </select>
+                        <label for="floatingSelect">Genero</label>
+                    </div>
+                    <br />
+
+                    <button id="registrar" type="submit" className="btn btn-primary" disabled>Registrar</button>
+                </form>
+            </div>
+
             <style>
 
                 {`
@@ -93,7 +108,7 @@ export const FormularioLibro = ({ agregar }) => {
           }
 
           ::-webkit-scrollbar-thumb {
-            background: #6fc1ff;
+            background: #505050;
           }
           .futurama{
             background-color: #222;
@@ -105,6 +120,7 @@ export const FormularioLibro = ({ agregar }) => {
             text-transform: uppercase;
             
           }
+        
 
         `}
 
