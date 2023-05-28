@@ -46,16 +46,41 @@ export const TablaLibro = ({ listaLibros }) => {
     }
 
     const buscarLibroPorGenero = (genero) => {
-        return listaLibros.filter((libro) => libro.genero == genero)
-    }
+        const librosEncontrados = listaLibros.filter((libro) => libro.genero === genero);
+        if (librosEncontrados.length === 0) {
+            window.alert("No se encontraron libros con el género especificado.");
+            setBuscarGen("");
+            document.getElementById("buscarGenero").disabled = true;
+            return []; // Devolver un array vacío cuando no se encuentran libros
+        } else {
+            return librosEncontrados; // Devolver los libros encontrados
+        }
+    };
+
 
     const buscarLibroPorTitulo = (titulo) => {
-        return listaLibros.filter((libro) => libro.titulo == titulo)
-    }
+        const librosEncontrados = listaLibros.filter((libro) => libro.titulo === titulo);
+        if (librosEncontrados.length === 0) {
+            window.alert("No se encontraron libros con el titulo especificado.");
+            setBuscarTitulo("");
+            document.getElementById("buscarTitulo").disabled = true;
+            return []; // Devolver un array vacío cuando no se encuentran libros
+        } else {
+            return librosEncontrados; // Devolver los libros encontrados
+        }
+    };
 
     const buscarLibroPorAutor = (autor) => {
-        return listaLibros.filter((libro) => libro.autor == autor)
-    }
+        const librosEncontrados = listaLibros.filter((libro) => libro.autor === autor);
+        if (librosEncontrados.length === 0) {
+            window.alert("No se encontraron libros con el autor especificado.");
+            setBuscarAutor("");
+            document.getElementById("buscarAutor").disabled = true;
+            return []; // Devolver un array vacío cuando no se encuentran libros
+        } else {
+            return librosEncontrados; // Devolver los libros encontrados
+        }
+    };
 
     const buscarLibGen = (event) => {
         event.preventDefault();
@@ -82,6 +107,9 @@ export const TablaLibro = ({ listaLibros }) => {
         setLibrosEncontradosTitulo([]);
         setLibrosEncontradosGen([]);
         setLibrosEncontradosAutor([]);
+        document.getElementById("buscarAutor").disabled = true;
+        document.getElementById("buscarTitulo").disabled = true;
+        document.getElementById("buscarGenero").disabled = true;
     };
 
     function habilitarButtonTitulo() {
@@ -133,7 +161,7 @@ export const TablaLibro = ({ listaLibros }) => {
             document.getElementById("buscarTitulo").style.display = "block"
             document.getElementById("volverTitulo").style.display = "block"
             document.getElementById("floatingBus").style.display = "none"
-            
+
         } else if (busq == "Autor") {
             document.getElementById("busquedaTipo").style.display = "none"
             document.getElementById("busAutor").style.display = "block"
@@ -151,7 +179,8 @@ export const TablaLibro = ({ listaLibros }) => {
         }
     }
 
-    function volverTitulo() {
+    function volverTitulo(event) {
+        event.preventDefault();
         document.getElementById("busquedaTipo").style.display = "block"
         document.getElementById("busTitulo").style.display = "none"
         document.getElementById("busquedaTitulo").style.display = "none"
@@ -161,7 +190,8 @@ export const TablaLibro = ({ listaLibros }) => {
         setBusqueda("");
     }
 
-    function volverAutor() {
+    function volverAutor(event) {
+        event.preventDefault();
         document.getElementById("busquedaTipo").style.display = "block"
         document.getElementById("busAutor").style.display = "none"
         document.getElementById("busquedaAutor").style.display = "none"
@@ -171,33 +201,35 @@ export const TablaLibro = ({ listaLibros }) => {
         setBusqueda("");
     }
 
-    function volverGenero() {
+    function volverGenero(event) {
+        event.preventDefault();
         document.getElementById("busquedaTipo").style.display = "block"
         document.getElementById("busGenero").style.display = "none"
         document.getElementById("busquedaGenero").style.display = "none"
         document.getElementById("buscarGenero").style.display = "none"
         document.getElementById("volverGenero").style.display = "none"
         document.getElementById("floatingBus").style.display = "block"
+        setBuscarGen("");
         setBusqueda("");
     }
 
+    const librosEncontrados = LibrosEncontradosGen.length > 0 || LibrosEncontradosTitulo.length > 0 || LibrosEncontradosAutor.length > 0;
+
     return (
         <>
-            <form style={{ backgroundColor: "#AD9978" }}>
-            <h2 id="Busquedas" className="text-left text-dark" style={{ fontSize: "50px", backgroundColor: "#AD9978", margin: "0", padding: "0" }}>Busquedas</h2>
-                <div className="form-floating">
-                    <select class="form-select" id="busquedaTipo" value={busqueda} onChange={(event) => { setBusqueda(event.target.value); busquedaGeneral(); }}>
-                        <option value="" selected>Seleccione un tipo de busqueda</option>
-                        <option value="Titulo">Titulo</option>
-                        <option value="Autor">Autor</option>
-                        <option value="Categoria">Categoria</option>
-                    </select>
-                    <label id="floatingBus" for="floatingSelect">Busqueda</label>
-                    <br></br>
-                </div>
-            </form>
+            <h2 id="Busquedas" className="text-left text-dark" style={{ fontSize: "50px", margin: "0", padding: "0" }}>Busquedas</h2>
+            <div className="form-floating">
+                <select class="form-select" id="busquedaTipo" value={busqueda} onChange={(event) => { setBusqueda(event.target.value); busquedaGeneral(); }}>
+                    <option value="" selected>Seleccione un tipo de busqueda</option>
+                    <option value="Titulo">Titulo</option>
+                    <option value="Autor">Autor</option>
+                    <option value="Categoria">Categoria</option>
+                </select>
+                <label id="floatingBus" for="floatingSelect">Busqueda</label>
+                <br></br>
+            </div>
 
-            <form onSubmit={buscarLibTitulo} style={{ backgroundColor: "#AD9978" }}>
+            <form onSubmit={buscarLibTitulo} >
                 <div className="form-group input-group">
                     <label style={{ display: "none" }} id="busTitulo" class="input-group-text futurama " for="inputGroupSelect01" >Titulo</label>
                     <input style={{ display: "none" }} type="text" className="form-control" id="busquedaTitulo" placeholder="Titulo" value={buscarTitulo} onChange={(event) => { setBuscarTitulo(event.target.value); habilitarButtonTitulo(); }} />
@@ -206,7 +238,7 @@ export const TablaLibro = ({ listaLibros }) => {
                 </div>
             </form>
 
-            <form onSubmit={buscarLibAutor} style={{ backgroundColor: "#AD9978" }}>
+            <form onSubmit={buscarLibAutor}>
                 <div className="form-group input-group">
                     <label style={{ display: "none" }} id="busAutor" class="input-group-text futurama " for="inputGroupSelect01" >Autor</label>
                     <input style={{ display: "none" }} type="text" className="form-control" id="busquedaAutor" placeholder="Autor" value={buscarAutor} onChange={(event) => { setBuscarAutor(event.target.value); habilitarButtonAutor(); }} />
@@ -215,7 +247,7 @@ export const TablaLibro = ({ listaLibros }) => {
                 </div>
             </form>
 
-            <form onSubmit={buscarLibGen} style={{ backgroundColor: "#AD9978" }}>
+            <form onSubmit={buscarLibGen}>
                 <div className="form-floating">
                     <select style={{ display: "none" }} class="form-select" id="busquedaGenero" value={buscarGen} onChange={(event) => { setBuscarGen(event.target.value); habilitarButtonGenero(); }}>
 
@@ -235,48 +267,47 @@ export const TablaLibro = ({ listaLibros }) => {
             </form>
 
             {
-                LibrosEncontradosGen.length > 0 || LibrosEncontradosTitulo.length > 0 || LibrosEncontradosAutor.length > 0 ? (
-                    <div>
-                        <h3>Libros encontrados:</h3>
-                        <table className="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Id Libro</th>
-                                    <th scope="col">Titulo</th>
-                                    <th scope="col">Autor</th>
-                                    <th scope="col">Genero</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {LibrosEncontradosGen.map((libro, index) => (
-                                    <tr key={index}>
-                                        <td>{libro.id}</td>
-                                        <td>{libro.titulo}</td>
-                                        <td>{libro.autor}</td>
-                                        <td>{libro.genero}</td>
+                librosEncontrados ? (
+                        <div >
+                            <h3 id="Busquedas" className="text-left text-dark" style={{ fontSize: "35px", margin: "0", padding: "0" }}>Libros encontrados:</h3>
+                            <table className="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Id Libro</th>
+                                        <th scope="col">Titulo</th>
+                                        <th scope="col">Autor</th>
+                                        <th scope="col">Genero</th>
                                     </tr>
-                                ))}
-                                {LibrosEncontradosTitulo.map((libro, index) => (
-                                    <tr key={index}>
-                                        <td>{libro.id}</td>
-                                        <td>{libro.titulo}</td>
-                                        <td>{libro.autor}</td>
-                                        <td>{libro.genero}</td>
-                                    </tr>
-                                ))}
-                                {LibrosEncontradosAutor.map((libro, index) => (
-                                    <tr key={index}>
-                                        <td>{libro.id}</td>
-                                        <td>{libro.titulo}</td>
-                                        <td>{libro.autor}</td>
-                                        <td>{libro.genero}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                        <button className="btn btn-info" onClick={limpiarBusqueda}> Limpiar búsqueda
-                        </button>
-                    </div>
+                                </thead>
+                                <tbody>
+                                    {LibrosEncontradosGen.map((libro, index) => (
+                                        <tr key={index}>
+                                            <td>{libro.id}</td>
+                                            <td>{libro.titulo}</td>
+                                            <td>{libro.autor}</td>
+                                            <td>{libro.genero}</td>
+                                        </tr>
+                                    ))}
+                                    {LibrosEncontradosTitulo.map((libro, index) => (
+                                        <tr key={index}>
+                                            <td>{libro.id}</td>
+                                            <td>{libro.titulo}</td>
+                                            <td>{libro.autor}</td>
+                                            <td>{libro.genero}</td>
+                                        </tr>
+                                    ))}
+                                    {LibrosEncontradosAutor.map((libro, index) => (
+                                        <tr key={index}>
+                                            <td>{libro.id}</td>
+                                            <td>{libro.titulo}</td>
+                                            <td>{libro.autor}</td>
+                                            <td>{libro.genero}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                            <button onClick={limpiarBusqueda} id="buscarGenero" type="submit" class="btn btn-dark" > Limpiar busqueda</button>
+                        </div>
                 ) : (
                     <div>
                         <table className="table">
@@ -315,6 +346,7 @@ export const TablaLibro = ({ listaLibros }) => {
                         </table>
                     </div>
                 )}
+
             <style>
                 {`
                     .color{
@@ -333,6 +365,9 @@ export const TablaLibro = ({ listaLibros }) => {
                         font-family: 'Arial', sans-serif;
                         font-size: 14px;
                         text-transform: uppercase;
+                    }  
+                    Body {Background-color : #AD9978;}
+
                     `}
                 <Modal
                     isOpen={modalAbierto}
