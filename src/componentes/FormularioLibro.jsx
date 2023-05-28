@@ -1,6 +1,7 @@
 import { useState } from "react"
 
 export const FormularioLibro = ({ agregar }) => {
+    const [id, setId] = useState("");
     const [titulo, setTitulo] = useState("");
     const [autor, setAutor] = useState("");
     const [genero, setGenero] = useState("");
@@ -8,11 +9,13 @@ export const FormularioLibro = ({ agregar }) => {
     const guardarLibro = (event) => {
 
         let libro = {
+            id: id,
             titulo: titulo,
             autor: autor,
             genero: genero
         }
         agregar(libro)
+        setId("");
         setTitulo("");
         setAutor("");
         setGenero("");
