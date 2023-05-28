@@ -36,13 +36,6 @@ export const LibrosApp = () => {
         switch (currentPage) {
             case "formulario":
                 return (
-                    <>
-                        <FormularioLibro agregar={agregarLibro} />
-                        <TablaLibro listaLibros={libros} />
-                    </>
-                );
-            default:
-                return (
                     <div
                         style={{
                             backgroundColor: "#AD9978",
@@ -57,6 +50,14 @@ export const LibrosApp = () => {
                     >
                         <h1>Bienvenido a la Biblioteca</h1>
                     </div>
+                    
+                );
+            default:
+                return (
+                    <>
+                        <FormularioLibro agregar={agregarLibro} />
+                        <TablaLibro listaLibros={libros} />
+                    </>
                 );
         }
     };
@@ -84,7 +85,7 @@ export const LibrosApp = () => {
                                     className={`nav-link btn ${currentPage === "home" ? "active" : ""}`}
                                     onClick={() => cambiarPagina("home")}
                                 >
-                                    Home
+                                    Formulario Libro
                                 </button>
                             </li>
                             <li className="nav-item">
@@ -92,7 +93,7 @@ export const LibrosApp = () => {
                                     className={`nav-link btn ${currentPage === "formulario" ? "active" : ""}`}
                                     onClick={() => cambiarPagina("formulario")}
                                 >
-                                    FormularioLibro
+                                    Home
                                 </button>
                             </li>
                             <li className="nav-item">
