@@ -13,10 +13,11 @@ export const LibrosApp = () => {
 
     const agregarLibro = (libro) => {
         setLibros([...libros, libro])
-        
+        postLibro(libro);
     }
     const cargueLibros = async () => {
-        
+        const datos = await getLibros()
+        setLibros(datos)
     }
     useEffect(()=>{
         cargueLibros();

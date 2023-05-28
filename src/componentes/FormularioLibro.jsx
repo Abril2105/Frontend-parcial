@@ -1,6 +1,7 @@
 import { useState } from "react"
 
 export const FormularioLibro = ({ agregar }) => {
+    const [id, setId] = useState("");
     const [titulo, setTitulo] = useState("");
     const [autor, setAutor] = useState("");
     const [genero, setGenero] = useState("");
@@ -8,20 +9,27 @@ export const FormularioLibro = ({ agregar }) => {
     const guardarLibro = (event) => {
 
         let libro = {
+            id: id,
             titulo: titulo,
             autor: autor,
             genero: genero
         }
         agregar(libro)
+        setId("");
         setTitulo("");
         setAutor("");
         setGenero("");
     }
 
     function habilitarButton() {
-
-        var genero = document.getElementById("genero").value
-        if (genero == "") {
+        var titu = document.getElementById("titulo").value
+        var auto = document.getElementById("autor").value
+        var gen = document.getElementById("genero").value
+        if (titu == "") {
+            document.getElementById("registrar").disabled = true;
+        } else if (auto == "") {
+            document.getElementById("registrar").disabled = true;
+        } else if (gen == "") {
             document.getElementById("registrar").disabled = true;
         } else {
             document.getElementById("registrar").disabled = false;
@@ -30,6 +38,7 @@ export const FormularioLibro = ({ agregar }) => {
 
     return (
         <>
+
             
                 
                 <nav class="navbar navbar-expand-lg bg-light">
