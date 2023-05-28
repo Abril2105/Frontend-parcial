@@ -30,7 +30,21 @@ export const FormularioLibro = ({ agregar }) => {
 
     return (
         <>
-
+                <div style={{ display: "flex" }}>
+      <nav style={{ backgroundColor: "#AD9978", width: "200px" }}>
+        <ul style={{ listStyleType: "none", padding: "0" }}>
+          <li>
+            <a href="#" style={{ color: "#fff", textDecoration: "none", padding: "10px" }}>Home</a>
+          </li>
+          <li>
+            <a href="#" style={{ color: "#fff", textDecoration: "none", padding: "10px" }}>Libros</a>
+          </li>
+          <li>
+            <a href="#" style={{ color: "#fff", textDecoration: "none", padding: "10px" }}>Préstamos</a>
+          </li>
+        </ul>
+      </nav>
+      </div>
 
             <form onSubmit={guardarLibro} style={{ backgroundColor: "#AD9978" }}>
                 <h1 className="text-center text-light " style={{ fontSize: "100px", backgroundColor: "#AD9978" }}>Biblioteca</h1>
@@ -47,7 +61,7 @@ export const FormularioLibro = ({ agregar }) => {
 
 
                 <br />
-                <div className="form-floating">       
+                <div className="form-floating">
                     <select class="form-select" id="genero" value={genero} onChange={(event) => { setGenero(event.target.value); habilitarButton(); }}>
                         <option selected>Seleccione un genero</option>
                         <option value="1">Ficcion</option>
@@ -59,11 +73,11 @@ export const FormularioLibro = ({ agregar }) => {
                     </select>
                     <label for="floatingSelect">Genero</label>
                 </div>
-            <br />
+                <br />
 
                 <button id="registrar" type="submit" className="btn btn-primary" disabled>Registrar</button>
             </form>
-
+            
             <style>
 
                 {`
