@@ -19,7 +19,7 @@ export const FormularioLibro = ({ agregar }) => {
     }
 
     function habilitarButton() {
-    
+
         var genero = document.getElementById("genero").value
         if (genero == "") {
             document.getElementById("registrar").disabled = true;
@@ -30,41 +30,42 @@ export const FormularioLibro = ({ agregar }) => {
 
     return (
         <>
-            
-            
-                <form onSubmit={guardarLibro} style={{ backgroundColor: "#AD9978" }}>
-                    <h1 className="text-center text-light " style={{ fontSize: "100px", backgroundColor: "#AD9978" }}>Biblioteca</h1>
-                    <div className="form-group input-group">
-                        <label class="input-group-text futurama " for="inputGroupSelect01" >Titulo</label>
-                        <input type="text" className="form-control" id="titulo" placeholder="Titulo" value={titulo} onChange={(event) => setTitulo(event.target.value)} />
-                    </div>
-                    <br />
-                    <div className="form-group input-group ">
-                        <label class="input-group-text futurama" for="inputGroupSelect01">Autor</label>
-                        <input type="text" className="form-control" id="autor" placeholder="Autor" value={autor} onChange={(event) => setAutor(event.target.value)} />
-                    </div>
-                    <br />
-                    <div className="form-group input-group">
-                        <label class="input-group-text futurama" for="inputGroupSelect01">Genero</label>
-                        <br></br>
-                        <select id="genero" value={genero} onChange={(event) => { setGenero(event.target.value); habilitarButton(); }}>
-                            <option value="">--Seleccione el genero--</option>
-                            <option value="1">Ficcion</option>
-                            <option value="2">Novela</option>
-                            <option value="3">Suspenso</option>
-                            <option value="4">Fantasia</option>
-                            <option value="5">Romance</option>
-                            <option value="6">Historia</option>
 
-                        </select>
-                    </div>
-                    <br />
 
-                    <button id="registrar" type="submit" className="btn btn-primary" disabled>Registrar</button>
-                </form>
-           
+            <form onSubmit={guardarLibro} style={{ backgroundColor: "#AD9978" }}>
+                <h1 className="text-center text-light " style={{ fontSize: "100px", backgroundColor: "#AD9978" }}>Biblioteca</h1>
+                <div className="form-group input-group">
+                    <label class="input-group-text futurama " for="inputGroupSelect01" >Titulo</label>
+                    <input type="text" className="form-control" id="titulo" placeholder="Titulo" value={titulo} onChange={(event) => setTitulo(event.target.value)} />
+                </div>
+                <br />
+                <div className="form-group input-group ">
+                    <label class="input-group-text futurama" for="inputGroupSelect01">Autor</label>
+                    <input type="text" className="form-control" id="autor" placeholder="Autor" value={autor} onChange={(event) => setAutor(event.target.value)} />
+                </div>
+
+
+
+                <br />
+                <div className="form-floating">       
+                    <select class="form-select" id="genero" value={genero} onChange={(event) => { setGenero(event.target.value); habilitarButton(); }}>
+                        <option selected>Seleccione un genero</option>
+                        <option value="1">Ficcion</option>
+                        <option value="2">Novela</option>
+                        <option value="3">Suspenso</option>
+                        <option value="4">Fantasia</option>
+                        <option value="5">Romance</option>
+                        <option value="6">Historia</option>
+                    </select>
+                    <label for="floatingSelect">Genero</label>
+                </div>
+            <br />
+
+                <button id="registrar" type="submit" className="btn btn-primary" disabled>Registrar</button>
+            </form>
+
             <style>
-                
+
                 {`
                  ::-webkit-scrollbar {
             width: 10px;
@@ -89,7 +90,7 @@ export const FormularioLibro = ({ agregar }) => {
           }
 
         `}
-        
+
             </style>
         </>
     )
