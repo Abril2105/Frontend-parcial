@@ -38,9 +38,6 @@ export const FormularioLibro = ({ agregar }) => {
 
     return (
         <>
-
-            
-                
                 <nav class="navbar navbar-expand-lg bg-light">
                     <div class="container-fluid">
                         <a class="navbar-brand" href="#">NAVEGADOR</a>
@@ -83,12 +80,13 @@ export const FormularioLibro = ({ agregar }) => {
                     <div className="form-floating">
                         <select class="form-select" id="genero" value={genero} onChange={(event) => { setGenero(event.target.value); habilitarButton(); }}>
                             <option selected>Seleccione un genero</option>
-                            <option value="1">Ficcion</option>
-                            <option value="2">Novela</option>
-                            <option value="3">Suspenso</option>
-                            <option value="4">Fantasia</option>
-                            <option value="5">Romance</option>
-                            <option value="6">Historia</option>
+                            <option value="Ficcion">Ficcion</option>
+                            <option value="Novela">Novela</option>
+                            <option value="Suspenso">Suspenso</option>
+                            <option value="Fantasia">Fantasia</option>
+                            <option value="Romance">Romance</option>
+                            <option value="Historia">Historia</option>
+
                         </select>
                         <label for="floatingSelect">Genero</label>
                     </div>
