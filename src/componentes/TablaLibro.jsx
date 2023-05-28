@@ -22,7 +22,6 @@ export const TablaLibro = ({ listaLibros }) => {
     const [buscarGen, setBuscarGen] = useState("");
     const [buscarTitulo, setBuscarTitulo] = useState("");
     const [buscarAutor, setBuscarAutor] = useState("");
-
     const [busqueda, setBusqueda] = useState("");
 
 
@@ -51,9 +50,9 @@ export const TablaLibro = ({ listaLibros }) => {
             window.alert("No se encontraron libros con el género especificado.");
             setBuscarGen("");
             document.getElementById("buscarGenero").disabled = true;
-            return []; // Devolver un array vacío cuando no se encuentran libros
+            return [];
         } else {
-            return librosEncontrados; // Devolver los libros encontrados
+            return librosEncontrados; 
         }
     };
 
@@ -64,9 +63,9 @@ export const TablaLibro = ({ listaLibros }) => {
             window.alert("No se encontraron libros con el titulo especificado.");
             setBuscarTitulo("");
             document.getElementById("buscarTitulo").disabled = true;
-            return []; // Devolver un array vacío cuando no se encuentran libros
+            return []; 
         } else {
-            return librosEncontrados; // Devolver los libros encontrados
+            return librosEncontrados; 
         }
     };
 
@@ -76,9 +75,9 @@ export const TablaLibro = ({ listaLibros }) => {
             window.alert("No se encontraron libros con el autor especificado.");
             setBuscarAutor("");
             document.getElementById("buscarAutor").disabled = true;
-            return []; // Devolver un array vacío cuando no se encuentran libros
+            return []; 
         } else {
-            return librosEncontrados; // Devolver los libros encontrados
+            return librosEncontrados; 
         }
     };
 
@@ -391,11 +390,6 @@ export const TablaLibro = ({ listaLibros }) => {
                         </div>
                     )}
                 </Modal>
-
-                      
-
-                    
-
             </style>
         </>
 
