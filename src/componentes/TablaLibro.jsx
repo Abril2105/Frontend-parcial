@@ -2,16 +2,13 @@ import { useState } from "react";
 import Modal from 'react-modal';
 
 export const TablaLibro = ({ listaLibros }) => {
-
-
     const [libroSeleccionado, setLibroSeleccionado] = useState(null);
     const [modalAbierto, setModalAbierto] = useState(false);
     const [selectedBook, setSelectedBook] = useState(null);
-    
-      
-      const cerrarModal = () => {
+
+    const cerrarModal = () => {
         setModalAbierto(false);
-      };
+    };
 
     const informacion = (libro) => {
         setLibroSeleccionado(libro);
@@ -52,8 +49,7 @@ export const TablaLibro = ({ listaLibros }) => {
             document.getElementById("buscarGenero").disabled = true;
             return [];
         } else {
-            return librosEncontrados; 
-
+            return librosEncontrados;
         }
     };
 
@@ -64,10 +60,9 @@ export const TablaLibro = ({ listaLibros }) => {
             window.alert("No se encontraron libros con el titulo especificado.");
             setBuscarTitulo("");
             document.getElementById("buscarTitulo").disabled = true;
-            return []; 
+            return [];
         } else {
-            return librosEncontrados; 
-
+            return librosEncontrados;
         }
     };
 
@@ -77,9 +72,9 @@ export const TablaLibro = ({ listaLibros }) => {
             window.alert("No se encontraron libros con el autor especificado.");
             setBuscarAutor("");
             document.getElementById("buscarAutor").disabled = true;
-            return []; 
+            return [];
         } else {
-            return librosEncontrados; 
+            return librosEncontrados;
         }
     };
 
@@ -269,46 +264,46 @@ export const TablaLibro = ({ listaLibros }) => {
 
             {
                 librosEncontrados ? (
-                        <div >
-                            <h3 id="Busquedas" className="text-left text-dark" style={{ fontSize: "35px", margin: "0", padding: "0" }}>Libros encontrados:</h3>
-                            <table className="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Id Libro</th>
-                                        <th scope="col">Titulo</th>
-                                        <th scope="col">Autor</th>
-                                        <th scope="col">Genero</th>
+                    <div >
+                        <h3 id="Busquedas" className="text-left text-dark" style={{ fontSize: "35px", margin: "0", padding: "0" }}>Libros encontrados:</h3>
+                        <table className="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Id Libro</th>
+                                    <th scope="col">Titulo</th>
+                                    <th scope="col">Autor</th>
+                                    <th scope="col">Genero</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {LibrosEncontradosGen.map((libro, index) => (
+                                    <tr key={index}>
+                                        <td>{libro.id}</td>
+                                        <td>{libro.titulo}</td>
+                                        <td>{libro.autor}</td>
+                                        <td>{libro.genero}</td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    {LibrosEncontradosGen.map((libro, index) => (
-                                        <tr key={index}>
-                                            <td>{libro.id}</td>
-                                            <td>{libro.titulo}</td>
-                                            <td>{libro.autor}</td>
-                                            <td>{libro.genero}</td>
-                                        </tr>
-                                    ))}
-                                    {LibrosEncontradosTitulo.map((libro, index) => (
-                                        <tr key={index}>
-                                            <td>{libro.id}</td>
-                                            <td>{libro.titulo}</td>
-                                            <td>{libro.autor}</td>
-                                            <td>{libro.genero}</td>
-                                        </tr>
-                                    ))}
-                                    {LibrosEncontradosAutor.map((libro, index) => (
-                                        <tr key={index}>
-                                            <td>{libro.id}</td>
-                                            <td>{libro.titulo}</td>
-                                            <td>{libro.autor}</td>
-                                            <td>{libro.genero}</td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                            <button onClick={limpiarBusqueda} id="buscarGenero" type="submit" class="btn btn-dark" > Limpiar busqueda</button>
-                        </div>
+                                ))}
+                                {LibrosEncontradosTitulo.map((libro, index) => (
+                                    <tr key={index}>
+                                        <td>{libro.id}</td>
+                                        <td>{libro.titulo}</td>
+                                        <td>{libro.autor}</td>
+                                        <td>{libro.genero}</td>
+                                    </tr>
+                                ))}
+                                {LibrosEncontradosAutor.map((libro, index) => (
+                                    <tr key={index}>
+                                        <td>{libro.id}</td>
+                                        <td>{libro.titulo}</td>
+                                        <td>{libro.autor}</td>
+                                        <td>{libro.genero}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                        <button onClick={limpiarBusqueda} id="buscarGenero" type="submit" class="btn btn-dark" > Limpiar busqueda</button>
+                    </div>
                 ) : (
                     <div>
                         <table className="table">
@@ -375,10 +370,10 @@ export const TablaLibro = ({ listaLibros }) => {
                     onRequestClose={cerrarModal}
                     style={{
                         content: {
-                          width: '500px',
-                          height: '400px',
+                            width: '500px',
+                            height: '400px',
                         },
-                      }}
+                    }}
                 >
                     {libroSeleccionado && (
                         <div className="ventana-emergente">
@@ -387,15 +382,11 @@ export const TablaLibro = ({ listaLibros }) => {
                             <p>Autor: {libroSeleccionado.autor}</p>
                             <p>Género: {libroSeleccionado.genero}</p>
                             <p>Descripción del libro: {libroSeleccionado.descripcion}</p>
-                            
+
                             <button onClick={cerrarModal}>Cerrar</button>
                         </div>
                     )}
                 </Modal>
-                    }  
-                    Body {Background-color : #AD9978;}
-
-                    `}
             </style>
         </>
 
