@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export const TablaLibro = ({ listaLibros }) => {
 
-    const editar = (event) => {
+    const informacion = (event) => {
 
 
 
@@ -121,7 +121,7 @@ export const TablaLibro = ({ listaLibros }) => {
                                         <td>{libro.autor}</td>
                                         <td>{libro.genero}</td>
                                         <td>
-                                            <button className="btn btn-success" onClick={editar}> Editar
+                                            <button className="btn btn-success" onClick={informacion}> Informacion
                                             </button>
                                         </td>
                                         <td>
