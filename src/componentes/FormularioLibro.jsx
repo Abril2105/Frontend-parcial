@@ -86,6 +86,7 @@ export const FormularioLibro = ({ agregar }) => {
                             <option value="Fantasia">Fantasia</option>
                             <option value="Romance">Romance</option>
                             <option value="Historia">Historia</option>
+
                         </select>
                         <label for="floatingSelect">Genero</label>
                     </div>
