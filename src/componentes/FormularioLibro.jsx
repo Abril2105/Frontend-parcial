@@ -8,7 +8,6 @@ export const FormularioLibro = ({ agregar }) => {
     const [descripcion, setDescripcion] = useState("");
 
     const guardarLibro = (event) => {
-
         let libro = {
             id: id,
             titulo: titulo,
@@ -44,14 +43,6 @@ export const FormularioLibro = ({ agregar }) => {
 
     return (
         <>
-
-
-
-            
-                
-
-                
-            
             <div>
                 <form onSubmit={guardarLibro} style={{ backgroundColor: "#AD9978" }}>
                     <h1 className="text-center text-dark " style={{ fontSize: "100px", backgroundColor: "#AD9978" }}>BIBLIOTECA</h1>
