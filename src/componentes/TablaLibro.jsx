@@ -1,16 +1,30 @@
 import { useState } from "react";
+import Modal from 'react-modal';
 
 export const TablaLibro = ({ listaLibros }) => {
 
-    const informacion = (event) => {
 
+    const [libroSeleccionado, setLibroSeleccionado] = useState(null);
+    const [modalAbierto, setModalAbierto] = useState(false);
+    const [selectedBook, setSelectedBook] = useState(null);
+    
+      
+      const cerrarModal = () => {
+        setModalAbierto(false);
+      };
 
-
+    const informacion = (libro) => {
+        setLibroSeleccionado(libro);
+        setSelectedBook(libro);
+        setModalAbierto(true);
     }
+
     const [buscarGen, setBuscarGen] = useState("");
     const [buscarTitulo, setBuscarTitulo] = useState("");
     const [buscarAutor, setBuscarAutor] = useState("");
+
     const [busqueda, setBusqueda] = useState("");
+
 
     const [LibrosEncontradosGen, setLibrosEncontradosGen] = useState([]);
     const [LibrosEncontradosTitulo, setLibrosEncontradosTitulo] = useState([]);
@@ -73,7 +87,15 @@ export const TablaLibro = ({ listaLibros }) => {
     function habilitarButtonTitulo() {
         var titu = document.getElementById("busquedaTitulo").value
         if (titu.length > 0) {
+
+            document.getElementById("buscarAutor").disabled = true;
+            document.getElementById("buscarGenero").disabled = true;
             document.getElementById("buscarTitulo").disabled = false;
+            setBuscarAutor("");
+            setBuscarGen("");
+
+            document.getElementById("buscarTitulo").disabled = false;
+
         } else {
             document.getElementById("buscarTitulo").disabled = true;
         }
@@ -83,6 +105,12 @@ export const TablaLibro = ({ listaLibros }) => {
         var auto = document.getElementById("busquedaAutor").value
         if (auto.length > 0) {
             document.getElementById("buscarAutor").disabled = false;
+
+            document.getElementById("buscarGenero").disabled = true;
+            document.getElementById("buscarTitulo").disabled = true;
+            setBuscarTitulo("");
+            setBuscarGen("");
+
         } else {
             document.getElementById("buscarAutor").disabled = true;
         }
@@ -190,6 +218,7 @@ export const TablaLibro = ({ listaLibros }) => {
             <form onSubmit={buscarLibGen} style={{ backgroundColor: "#AD9978" }}>
                 <div className="form-floating">
                     <select style={{ display: "none" }} class="form-select" id="busquedaGenero" value={buscarGen} onChange={(event) => { setBuscarGen(event.target.value); habilitarButtonGenero(); }}>
+
                         <option value="" selected>Seleccione un genero</option>
                         <option value="Ficcion">Ficcion</option>
                         <option value="Novela">Novela</option>
@@ -201,6 +230,7 @@ export const TablaLibro = ({ listaLibros }) => {
                     <label style={{ display: "none" }} id="busGenero" for="floatingSelect">Genero</label>
                     <button style={{ display: "none" }} id="buscarGenero" type="submit" class="btn btn-dark" disabled> Buscar</button>
                     <button style={{ display: "none" }} id="volverGenero" type="submit" class="btn btn-dark" onClick={volverGenero}> Volver</button>
+
                 </div>
             </form>
 
@@ -268,7 +298,10 @@ export const TablaLibro = ({ listaLibros }) => {
                                         <td>{libro.autor}</td>
                                         <td>{libro.genero}</td>
                                         <td>
-                                            <button className="btn btn-success" onClick={informacion}> Informacion
+
+                                            <button className="btn btn-success" onClick={() => informacion(libro)}> Informacion
+
+
                                             </button>
                                         </td>
                                         <td>
@@ -291,8 +324,6 @@ export const TablaLibro = ({ listaLibros }) => {
                     .table{
                         background-color: #AD9978;
                     }
-                    
-                    
 
                     .futurama{
                         background-color: #222;
@@ -302,10 +333,36 @@ export const TablaLibro = ({ listaLibros }) => {
                         font-family: 'Arial', sans-serif;
                         font-size: 14px;
                         text-transform: uppercase;
+                    `}
+                <Modal
+                    isOpen={modalAbierto}
+                    onRequestClose={cerrarModal}
+                    style={{
+                        content: {
+                          width: '500px',
+                          height: '400px',
+                        },
+                      }}
+                >
+                    {libroSeleccionado && (
+                        <div className="ventana-emergente">
+                            <h2>Información del libro</h2>
+                            <p>Título: {libroSeleccionado.titulo}</p>
+                            <p>Autor: {libroSeleccionado.autor}</p>
+                            <p>Género: {libroSeleccionado.genero}</p>
+                            <p>Descripción del libro: {libroSeleccionado.descripcion}</p>
+                            
+                            <button onClick={cerrarModal}>Cerrar</button>
+                        </div>
+                    )}
+                </Modal>
+
                     }  
 
                     `}
+
             </style>
         </>
+
     );
 };

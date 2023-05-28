@@ -5,6 +5,7 @@ export const FormularioLibro = ({ agregar }) => {
     const [titulo, setTitulo] = useState("");
     const [autor, setAutor] = useState("");
     const [genero, setGenero] = useState("");
+    const [descripcion, setDescripcion] = useState("");
 
     const guardarLibro = (event) => {
 
@@ -12,24 +13,29 @@ export const FormularioLibro = ({ agregar }) => {
             id: id,
             titulo: titulo,
             autor: autor,
-            genero: genero
+            genero: genero,
+            descripcion: descripcion
         }
         agregar(libro)
         setId("");
         setTitulo("");
         setAutor("");
         setGenero("");
+        setDescripcion("");
     }
 
     function habilitarButton() {
         var titu = document.getElementById("titulo").value
         var auto = document.getElementById("autor").value
         var gen = document.getElementById("genero").value
+        var des = document.getElementById("descripcion").value
         if (titu == "") {
             document.getElementById("registrar").disabled = true;
         } else if (auto == "") {
             document.getElementById("registrar").disabled = true;
         } else if (gen == "") {
+            document.getElementById("registrar").disabled = true;
+        } else if (des == "") {
             document.getElementById("registrar").disabled = true;
         } else {
             document.getElementById("registrar").disabled = false;
@@ -49,7 +55,9 @@ export const FormularioLibro = ({ agregar }) => {
             <div>
                 <form onSubmit={guardarLibro} style={{ backgroundColor: "#AD9978" }}>
                     <h1 className="text-center text-dark " style={{ fontSize: "100px", backgroundColor: "#AD9978" }}>BIBLIOTECA</h1>
+
                     <h2 id ="Busquedas" className="text-left text-dark " style={{ fontSize: "50px", backgroundColor: "#AD9978" }}>Registros</h2>
+
                     <div className="form-group input-group">
                         <label class="input-group-text futurama " for="inputGroupSelect01" >Titulo</label>
                         <input type="text" className="form-control" id="titulo" placeholder="Titulo" value={titulo} onChange={(event) => { setTitulo(event.target.value); habilitarButton(); }}/>
@@ -58,6 +66,11 @@ export const FormularioLibro = ({ agregar }) => {
                     <div className="form-group input-group ">
                         <label class="input-group-text futurama" for="inputGroupSelect01">Autor</label>
                         <input type="text" className="form-control" id="autor" placeholder="Autor" value={autor} onChange={(event) => { setAutor(event.target.value); habilitarButton(); }}/>
+                    </div>
+                    <br />
+                    <div className="form-group input-group ">
+                        <label class="input-group-text futurama" for="inputGroupSelect01">Descripcion del libro</label>
+                        <input type="text" className="form-control" id="descripcion" placeholder="Descripcion" value={descripcion} onChange={(event) => setDescripcion(event.target.value)} />
                     </div>
 
 

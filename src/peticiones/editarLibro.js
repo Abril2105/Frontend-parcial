@@ -8,7 +8,8 @@ export const editarLibro = async(libro) => {
         body: {
             titulo: libro.titulo,
             autor: libro.autor,          
-            genero: libro.genero
+            genero: libro.genero,
+            descripcion: libro.descripcion
         }
     });
     const data = await resp.json();
