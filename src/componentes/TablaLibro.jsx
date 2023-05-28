@@ -53,6 +53,7 @@ export const TablaLibro = ({ listaLibros }) => {
             return [];
         } else {
             return librosEncontrados; 
+
         }
     };
 
@@ -66,6 +67,7 @@ export const TablaLibro = ({ listaLibros }) => {
             return []; 
         } else {
             return librosEncontrados; 
+
         }
     };
 
@@ -390,6 +392,10 @@ export const TablaLibro = ({ listaLibros }) => {
                         </div>
                     )}
                 </Modal>
+                    }  
+                    Body {Background-color : #AD9978;}
+
+                    `}
             </style>
         </>
 
