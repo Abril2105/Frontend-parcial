@@ -287,6 +287,12 @@ export const TablaLibro = ({ listaLibros }) => {
                     .color{
                         background-color: #AD9978;
                     }
+
+                    .table{
+                        background-color: #AD9978;
+                    }
+                    
+
                     .futurama{
                         background-color: #222;
                         color: #fff;
@@ -296,6 +302,7 @@ export const TablaLibro = ({ listaLibros }) => {
                         font-size: 14px;
                         text-transform: uppercase;
                     }  
+
                     `}
             </style>
         </>
