@@ -3,25 +3,30 @@ import { useState } from "react"
 export const FormularioLibro = ({ agregar }) => {
     const [titulo, setTitulo] = useState("");
     const [autor, setAutor] = useState("");
-    const [genero, setGenero] = useState("");
+    const [categoria, setCategoria] = useState("");
 
     const guardarLibro = (event) => {
 
         let libro = {
             titulo: titulo,
             autor: autor,
-            genero: genero
+            categoria : categoria
         }
         agregar(libro)
         setTitulo("");
         setAutor("");
-        setGenero("");
+        setCategoria("");
     }
 
     function habilitarButton() {
-    
-        var genero = document.getElementById("genero").value
-        if (genero == "") {
+        var titu = document.getElementById("titulo").value
+        var auto = document.getElementById("autor").value
+        var cate = document.getElementById("categoria").value
+        if (titu == "") {
+            document.getElementById("registrar").disabled = true;
+        } else if (auto == "") {
+            document.getElementById("registrar").disabled = true;
+        } else if (cate == "") {
             document.getElementById("registrar").disabled = true;
         } else {
             document.getElementById("registrar").disabled = false;
@@ -31,22 +36,21 @@ export const FormularioLibro = ({ agregar }) => {
     return (
         <>
             <h1 className="text-center text-light " style={{ fontSize: "100px", backgroundColor: "#AD9978" }}>Biblioteca</h1>
-            
                 <form onSubmit={guardarLibro} style={{ backgroundColor: "#AD9978" }}>
                     <div className="form-group input-group">
                         <label class="input-group-text futurama " for="inputGroupSelect01" >Titulo</label>
-                        <input type="text" className="form-control" id="titulo" placeholder="Titulo" value={titulo} onChange={(event) => setTitulo(event.target.value)} />
+                        <input type="text" className="form-control" id="titulo" placeholder="Titulo" value={titulo} onChange={(event) => { setTitulo(event.target.value); habilitarButton(); }}/>
                     </div>
                     <br />
                     <div className="form-group input-group ">
                         <label class="input-group-text futurama" for="inputGroupSelect01">Autor</label>
-                        <input type="text" className="form-control" id="autor" placeholder="Autor" value={autor} onChange={(event) => setAutor(event.target.value)} />
+                        <input type="text" className="form-control" id="autor" placeholder="Autor" value={autor} onChange={(event) => { setAutor(event.target.value); habilitarButton(); }}/>
                     </div>
                     <br />
                     <div className="form-group input-group">
                         <label class="input-group-text futurama" for="inputGroupSelect01">Genero</label>
                         <br></br>
-                        <select id="genero" value={genero} onChange={(event) => { setGenero(event.target.value); habilitarButton(); }}>
+                        <select id="categoria" value={categoria} onChange={(event) => { setCategoria(event.target.value); habilitarButton(); }}>
                             <option value="">--Seleccione el genero--</option>
                             <option value="1">Ficcion</option>
                             <option value="2">Novela</option>
