@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 
 export const TablaLibro = ({ listaLibros }) => {
 
+
     const [libroSeleccionado, setLibroSeleccionado] = useState(null);
     const [modalAbierto, setModalAbierto] = useState(false);
     const [selectedBook, setSelectedBook] = useState(null);
@@ -21,6 +22,9 @@ export const TablaLibro = ({ listaLibros }) => {
     const [buscarGen, setBuscarGen] = useState("");
     const [buscarTitulo, setBuscarTitulo] = useState("");
     const [buscarAutor, setBuscarAutor] = useState("");
+
+    const [busqueda, setBusqueda] = useState("");
+
 
     const [LibrosEncontradosGen, setLibrosEncontradosGen] = useState([]);
     const [LibrosEncontradosTitulo, setLibrosEncontradosTitulo] = useState([]);
@@ -83,11 +87,15 @@ export const TablaLibro = ({ listaLibros }) => {
     function habilitarButtonTitulo() {
         var titu = document.getElementById("busquedaTitulo").value
         if (titu.length > 0) {
+
             document.getElementById("buscarAutor").disabled = true;
             document.getElementById("buscarGenero").disabled = true;
             document.getElementById("buscarTitulo").disabled = false;
             setBuscarAutor("");
             setBuscarGen("");
+
+            document.getElementById("buscarTitulo").disabled = false;
+
         } else {
             document.getElementById("buscarTitulo").disabled = true;
         }
@@ -97,10 +105,12 @@ export const TablaLibro = ({ listaLibros }) => {
         var auto = document.getElementById("busquedaAutor").value
         if (auto.length > 0) {
             document.getElementById("buscarAutor").disabled = false;
+
             document.getElementById("buscarGenero").disabled = true;
             document.getElementById("buscarTitulo").disabled = true;
             setBuscarTitulo("");
             setBuscarGen("");
+
         } else {
             document.getElementById("buscarAutor").disabled = true;
         }
@@ -108,43 +118,107 @@ export const TablaLibro = ({ listaLibros }) => {
 
     function habilitarButtonGenero() {
         var gen = document.getElementById("busquedaGenero").value
-        if (gen.length > 0) {
-            document.getElementById("buscarAutor").disabled = true;
-            document.getElementById("buscarGenero").disabled = false;
-            document.getElementById("buscarTitulo").disabled = true;
-            setBuscarTitulo("");
-            setBuscarAutor("");
-        } else {
+        if (gen == "") {
             document.getElementById("buscarGenero").disabled = true;
+        } else {
+            document.getElementById("buscarGenero").disabled = false;
         }
+    }
+    function busquedaGeneral() {
+        var busq = document.getElementById("busquedaTipo").value
+        if (busq == "Titulo") {
+            document.getElementById("busquedaTipo").style.display = "none"
+            document.getElementById("busTitulo").style.display = "block"
+            document.getElementById("busquedaTitulo").style.display = "block"
+            document.getElementById("buscarTitulo").style.display = "block"
+            document.getElementById("volverTitulo").style.display = "block"
+            document.getElementById("floatingBus").style.display = "none"
+            
+        } else if (busq == "Autor") {
+            document.getElementById("busquedaTipo").style.display = "none"
+            document.getElementById("busAutor").style.display = "block"
+            document.getElementById("busquedaAutor").style.display = "block"
+            document.getElementById("buscarAutor").style.display = "block"
+            document.getElementById("volverAutor").style.display = "block"
+            document.getElementById("floatingBus").style.display = "none"
+        } else if (busq == "Categoria") {
+            document.getElementById("busquedaTipo").style.display = "none"
+            document.getElementById("busGenero").style.display = "block"
+            document.getElementById("busquedaGenero").style.display = "block"
+            document.getElementById("buscarGenero").style.display = "block"
+            document.getElementById("volverGenero").style.display = "block"
+            document.getElementById("floatingBus").style.display = "none"
+        }
+    }
+
+    function volverTitulo() {
+        document.getElementById("busquedaTipo").style.display = "block"
+        document.getElementById("busTitulo").style.display = "none"
+        document.getElementById("busquedaTitulo").style.display = "none"
+        document.getElementById("buscarTitulo").style.display = "none"
+        document.getElementById("volverTitulo").style.display = "none"
+        document.getElementById("floatingBus").style.display = "block"
+        setBusqueda("");
+    }
+
+    function volverAutor() {
+        document.getElementById("busquedaTipo").style.display = "block"
+        document.getElementById("busAutor").style.display = "none"
+        document.getElementById("busquedaAutor").style.display = "none"
+        document.getElementById("buscarAutor").style.display = "none"
+        document.getElementById("volverAutor").style.display = "none"
+        document.getElementById("floatingBus").style.display = "block"
+        setBusqueda("");
+    }
+
+    function volverGenero() {
+        document.getElementById("busquedaTipo").style.display = "block"
+        document.getElementById("busGenero").style.display = "none"
+        document.getElementById("busquedaGenero").style.display = "none"
+        document.getElementById("buscarGenero").style.display = "none"
+        document.getElementById("volverGenero").style.display = "none"
+        document.getElementById("floatingBus").style.display = "block"
+        setBusqueda("");
     }
 
     return (
         <>
-            <form onSubmit={buscarLibTitulo} style={{ backgroundColor: "#AD9978" }}>
-                <h2 id="Busquedas" className="text-left text-dark " style={{ fontSize: "50px", backgroundColor: "#AD9978" }}>Busquedas</h2>
-                <div className="form-group input-group">
-                    <label class="input-group-text futurama " for="inputGroupSelect01" >Titulo</label>
-                    <input type="text" className="form-control" id="busquedaTitulo" placeholder="Titulo" value={buscarTitulo} onChange={(event) => { setBuscarTitulo(event.target.value); habilitarButtonTitulo(); }} />
+            <form style={{ backgroundColor: "#AD9978" }}>
+            <h2 id="Busquedas" className="text-left text-dark" style={{ fontSize: "50px", backgroundColor: "#AD9978", margin: "0", padding: "0" }}>Busquedas</h2>
+                <div className="form-floating">
+                    <select class="form-select" id="busquedaTipo" value={busqueda} onChange={(event) => { setBusqueda(event.target.value); busquedaGeneral(); }}>
+                        <option value="" selected>Seleccione un tipo de busqueda</option>
+                        <option value="Titulo">Titulo</option>
+                        <option value="Autor">Autor</option>
+                        <option value="Categoria">Categoria</option>
+                    </select>
+                    <label id="floatingBus" for="floatingSelect">Busqueda</label>
                     <br></br>
-                    <button id="buscarTitulo" type="submit" class="btn btn-dark" disabled> Buscar
-                    </button>
-                </div>
-            </form>
-            <form onSubmit={buscarLibAutor} style={{ backgroundColor: "#AD9978" }}>
-                <div className="form-group input-group">
-                    <label id="labelBusqueda" class="input-group-text futurama " for="inputGroupSelect01" >Autor</label>
-                    <input type="text" className="form-control" id="busquedaAutor" placeholder="Autor" value={buscarAutor} onChange={(event) => { setBuscarAutor(event.target.value); habilitarButtonAutor(); }} />
-                    <br></br>
-                    <button id="buscarAutor" type="submit" class="btn btn-dark" disabled> Buscar
-                    </button>
                 </div>
             </form>
 
-            <form onSubmit={buscarLibGen} className="color">
+            <form onSubmit={buscarLibTitulo} style={{ backgroundColor: "#AD9978" }}>
+                <div className="form-group input-group">
+                    <label style={{ display: "none" }} id="busTitulo" class="input-group-text futurama " for="inputGroupSelect01" >Titulo</label>
+                    <input style={{ display: "none" }} type="text" className="form-control" id="busquedaTitulo" placeholder="Titulo" value={buscarTitulo} onChange={(event) => { setBuscarTitulo(event.target.value); habilitarButtonTitulo(); }} />
+                    <button style={{ display: "none" }} id="buscarTitulo" type="submit" class="btn btn-dark" disabled> Buscar</button>
+                    <button style={{ display: "none" }} id="volverTitulo" type="submit" class="btn btn-dark" onClick={volverTitulo}> Volver</button>
+                </div>
+            </form>
+
+            <form onSubmit={buscarLibAutor} style={{ backgroundColor: "#AD9978" }}>
+                <div className="form-group input-group">
+                    <label style={{ display: "none" }} id="busAutor" class="input-group-text futurama " for="inputGroupSelect01" >Autor</label>
+                    <input style={{ display: "none" }} type="text" className="form-control" id="busquedaAutor" placeholder="Autor" value={buscarAutor} onChange={(event) => { setBuscarAutor(event.target.value); habilitarButtonAutor(); }} />
+                    <button style={{ display: "none" }} id="buscarAutor" type="submit" class="btn btn-dark" disabled> Buscar</button>
+                    <button style={{ display: "none" }} id="volverAutor" type="submit" class="btn btn-dark" onClick={volverAutor}> Volver</button>
+                </div>
+            </form>
+
+            <form onSubmit={buscarLibGen} style={{ backgroundColor: "#AD9978" }}>
                 <div className="form-floating">
-                    <br></br>
-                    <select class="form-select" id="busquedaGenero" value={buscarGen} onChange={(event) => { setBuscarGen(event.target.value); habilitarButtonGenero(); }}>
+                    <select style={{ display: "none" }} class="form-select" id="busquedaGenero" value={buscarGen} onChange={(event) => { setBuscarGen(event.target.value); habilitarButtonGenero(); }}>
+
                         <option value="" selected>Seleccione un genero</option>
                         <option value="Ficcion">Ficcion</option>
                         <option value="Novela">Novela</option>
@@ -153,10 +227,10 @@ export const TablaLibro = ({ listaLibros }) => {
                         <option value="Romance">Romance</option>
                         <option value="Historia">Historia</option>
                     </select>
-                    <label id="gen" for="floatingSelect">Genero</label>
-                    <br></br>
-                    <button id="buscarGenero" type="submit" class="btn btn-dark" disabled> Buscar
-                    </button>
+                    <label style={{ display: "none" }} id="busGenero" for="floatingSelect">Genero</label>
+                    <button style={{ display: "none" }} id="buscarGenero" type="submit" class="btn btn-dark" disabled> Buscar</button>
+                    <button style={{ display: "none" }} id="volverGenero" type="submit" class="btn btn-dark" onClick={volverGenero}> Volver</button>
+
                 </div>
             </form>
 
@@ -224,7 +298,10 @@ export const TablaLibro = ({ listaLibros }) => {
                                         <td>{libro.autor}</td>
                                         <td>{libro.genero}</td>
                                         <td>
+
                                             <button className="btn btn-success" onClick={() => informacion(libro)}> Informacion
+
+
                                             </button>
                                         </td>
                                         <td>
@@ -243,6 +320,11 @@ export const TablaLibro = ({ listaLibros }) => {
                     .color{
                         background-color: #AD9978;
                     }
+
+                    .table{
+                        background-color: #AD9978;
+                    }
+
                     .futurama{
                         background-color: #222;
                         color: #fff;
@@ -251,22 +333,6 @@ export const TablaLibro = ({ listaLibros }) => {
                         font-family: 'Arial', sans-serif;
                         font-size: 14px;
                         text-transform: uppercase;
-                    }
-                    #busquedaAutor {
-                        margin-top: 25px
-                    }
-                    #labelBusqueda {
-                        margin-top: 25px
-                    }
-                    #buscarAutor {
-                        margin-top: 25px
-                    }
-                    #gen {
-                        margin-top: 24px
-                    }
-                    #buscarGenero {
-                        margin-bottom: 20px
-                    }
                     `}
                 <Modal
                     isOpen={modalAbierto}
@@ -290,6 +356,11 @@ export const TablaLibro = ({ listaLibros }) => {
                         </div>
                     )}
                 </Modal>
+
+                    }  
+
+                    `}
+
             </style>
         </>
 

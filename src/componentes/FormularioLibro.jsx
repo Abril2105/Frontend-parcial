@@ -44,40 +44,28 @@ export const FormularioLibro = ({ agregar }) => {
 
     return (
         <>
-                <nav class="navbar navbar-expand-lg bg-light">
-                    <div class="container-fluid">
-                        <a class="navbar-brand" href="#">NAVEGADOR</a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarNav">
-                            <ul class="navbar-nav">
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Libros</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Rentas</a>
-                                </li>
-                                
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
+
+
+
+            
+                
+
+                
             
             <div>
                 <form onSubmit={guardarLibro} style={{ backgroundColor: "#AD9978" }}>
                     <h1 className="text-center text-dark " style={{ fontSize: "100px", backgroundColor: "#AD9978" }}>BIBLIOTECA</h1>
+
+                    <h2 id ="Busquedas" className="text-left text-dark " style={{ fontSize: "50px", backgroundColor: "#AD9978" }}>Registros</h2>
+
                     <div className="form-group input-group">
                         <label class="input-group-text futurama " for="inputGroupSelect01" >Titulo</label>
-                        <input type="text" className="form-control" id="titulo" placeholder="Titulo" value={titulo} onChange={(event) => setTitulo(event.target.value)} />
+                        <input type="text" className="form-control" id="titulo" placeholder="Titulo" value={titulo} onChange={(event) => { setTitulo(event.target.value); habilitarButton(); }}/>
                     </div>
                     <br />
                     <div className="form-group input-group ">
                         <label class="input-group-text futurama" for="inputGroupSelect01">Autor</label>
-                        <input type="text" className="form-control" id="autor" placeholder="Autor" value={autor} onChange={(event) => setAutor(event.target.value)} />
+                        <input type="text" className="form-control" id="autor" placeholder="Autor" value={autor} onChange={(event) => { setAutor(event.target.value); habilitarButton(); }}/>
                     </div>
                     <br />
                     <div className="form-group input-group ">
@@ -90,7 +78,7 @@ export const FormularioLibro = ({ agregar }) => {
                     <br />
                     <div className="form-floating">
                         <select class="form-select" id="genero" value={genero} onChange={(event) => { setGenero(event.target.value); habilitarButton(); }}>
-                            <option selected>Seleccione un genero</option>
+                            <option value = "" selected>Seleccione un genero</option>
                             <option value="Ficcion">Ficcion</option>
                             <option value="Novela">Novela</option>
                             <option value="Suspenso">Suspenso</option>
@@ -103,7 +91,7 @@ export const FormularioLibro = ({ agregar }) => {
                     </div>
                     <br />
 
-                    <button id="registrar" type="submit" className="btn btn-primary" disabled>Registrar</button>
+                    <button id="registrar" type="submit" class="btn btn-dark" disabled>Registrar</button>
                 </form>
             </div>
 
@@ -129,9 +117,10 @@ export const FormularioLibro = ({ agregar }) => {
             font-family: 'Arial', sans-serif;
             font-size: 14px;
             text-transform: uppercase;
-            
           }
-        
+          #registrar {
+            margin-bottom: 20px
+          }
 
         `}
 
