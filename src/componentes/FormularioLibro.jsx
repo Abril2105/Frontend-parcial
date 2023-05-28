@@ -5,6 +5,7 @@ export const FormularioLibro = ({ agregar }) => {
     const [titulo, setTitulo] = useState("");
     const [autor, setAutor] = useState("");
     const [genero, setGenero] = useState("");
+    const [descripcion, setDescripcion] = useState("");
 
     const guardarLibro = (event) => {
 
@@ -12,24 +13,29 @@ export const FormularioLibro = ({ agregar }) => {
             id: id,
             titulo: titulo,
             autor: autor,
-            genero: genero
+            genero: genero,
+            descripcion: descripcion
         }
         agregar(libro)
         setId("");
         setTitulo("");
         setAutor("");
         setGenero("");
+        setDescripcion("");
     }
 
     function habilitarButton() {
         var titu = document.getElementById("titulo").value
         var auto = document.getElementById("autor").value
         var gen = document.getElementById("genero").value
+        var des = document.getElementById("descripcion").value
         if (titu == "") {
             document.getElementById("registrar").disabled = true;
         } else if (auto == "") {
             document.getElementById("registrar").disabled = true;
         } else if (gen == "") {
+            document.getElementById("registrar").disabled = true;
+        } else if (des == "") {
             document.getElementById("registrar").disabled = true;
         } else {
             document.getElementById("registrar").disabled = false;
@@ -63,20 +69,20 @@ export const FormularioLibro = ({ agregar }) => {
             
             <div>
                 <form onSubmit={guardarLibro} style={{ backgroundColor: "#AD9978" }}>
-<<<<<<< HEAD
-                    <h1 className="text-center text-dark " style={{ fontSize: "100px", backgroundColor: "#AD9978" }}>Biblioteca</h1>
-=======
                     <h1 className="text-center text-dark " style={{ fontSize: "100px", backgroundColor: "#AD9978" }}>BIBLIOTECA</h1>
-                    <h2 id ="Busquedas" className="text-left text-dark " style={{ fontSize: "50px", backgroundColor: "#AD9978" }}>Registros</h2>
->>>>>>> b004aa74b39cd10e58c32708096371cf492668ab
                     <div className="form-group input-group">
                         <label class="input-group-text futurama " for="inputGroupSelect01" >Titulo</label>
-                        <input type="text" className="form-control" id="titulo" placeholder="Titulo" value={titulo} onChange={(event) => { setTitulo(event.target.value); habilitarButton(); }}/>
+                        <input type="text" className="form-control" id="titulo" placeholder="Titulo" value={titulo} onChange={(event) => setTitulo(event.target.value)} />
                     </div>
                     <br />
                     <div className="form-group input-group ">
                         <label class="input-group-text futurama" for="inputGroupSelect01">Autor</label>
-                        <input type="text" className="form-control" id="autor" placeholder="Autor" value={autor} onChange={(event) => { setAutor(event.target.value); habilitarButton(); }}/>
+                        <input type="text" className="form-control" id="autor" placeholder="Autor" value={autor} onChange={(event) => setAutor(event.target.value)} />
+                    </div>
+                    <br />
+                    <div className="form-group input-group ">
+                        <label class="input-group-text futurama" for="inputGroupSelect01">Descripcion del libro</label>
+                        <input type="text" className="form-control" id="descripcion" placeholder="Descripcion" value={descripcion} onChange={(event) => setDescripcion(event.target.value)} />
                     </div>
 
 
@@ -84,7 +90,7 @@ export const FormularioLibro = ({ agregar }) => {
                     <br />
                     <div className="form-floating">
                         <select class="form-select" id="genero" value={genero} onChange={(event) => { setGenero(event.target.value); habilitarButton(); }}>
-                            <option value = "" selected>Seleccione un genero</option>
+                            <option selected>Seleccione un genero</option>
                             <option value="Ficcion">Ficcion</option>
                             <option value="Novela">Novela</option>
                             <option value="Suspenso">Suspenso</option>
@@ -97,7 +103,7 @@ export const FormularioLibro = ({ agregar }) => {
                     </div>
                     <br />
 
-                    <button id="registrar" type="submit" class="btn btn-dark" disabled>Registrar</button>
+                    <button id="registrar" type="submit" className="btn btn-primary" disabled>Registrar</button>
                 </form>
             </div>
 
@@ -123,10 +129,9 @@ export const FormularioLibro = ({ agregar }) => {
             font-family: 'Arial', sans-serif;
             font-size: 14px;
             text-transform: uppercase;
+            
           }
-          #registrar {
-            margin-bottom: 20px
-          }
+        
 
         `}
 

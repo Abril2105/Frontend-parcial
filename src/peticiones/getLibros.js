@@ -8,7 +8,8 @@ export const getLibros = async () => {
       id : libro.id,
       titulo : libro.titulo,
       autor : libro.autor,
-      genero : libro.genero
+      genero : libro.genero,
+      descripcion : libro.descripcion
     }))
     return libroList;
     }

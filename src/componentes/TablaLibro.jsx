@@ -1,12 +1,23 @@
 import { useState } from "react";
+import Modal from 'react-modal';
 
 export const TablaLibro = ({ listaLibros }) => {
 
-    const informacion = (event) => {
+    const [libroSeleccionado, setLibroSeleccionado] = useState(null);
+    const [modalAbierto, setModalAbierto] = useState(false);
+    const [selectedBook, setSelectedBook] = useState(null);
+    
+      
+      const cerrarModal = () => {
+        setModalAbierto(false);
+      };
 
-
-
+    const informacion = (libro) => {
+        setLibroSeleccionado(libro);
+        setSelectedBook(libro);
+        setModalAbierto(true);
     }
+
     const [buscarGen, setBuscarGen] = useState("");
     const [buscarTitulo, setBuscarTitulo] = useState("");
     const [buscarAutor, setBuscarAutor] = useState("");
@@ -111,7 +122,7 @@ export const TablaLibro = ({ listaLibros }) => {
     return (
         <>
             <form onSubmit={buscarLibTitulo} style={{ backgroundColor: "#AD9978" }}>
-                <h2 id ="Busquedas" className="text-left text-dark " style={{ fontSize: "50px", backgroundColor: "#AD9978" }}>Busquedas</h2>
+                <h2 id="Busquedas" className="text-left text-dark " style={{ fontSize: "50px", backgroundColor: "#AD9978" }}>Busquedas</h2>
                 <div className="form-group input-group">
                     <label class="input-group-text futurama " for="inputGroupSelect01" >Titulo</label>
                     <input type="text" className="form-control" id="busquedaTitulo" placeholder="Titulo" value={buscarTitulo} onChange={(event) => { setBuscarTitulo(event.target.value); habilitarButtonTitulo(); }} />
@@ -122,8 +133,8 @@ export const TablaLibro = ({ listaLibros }) => {
             </form>
             <form onSubmit={buscarLibAutor} style={{ backgroundColor: "#AD9978" }}>
                 <div className="form-group input-group">
-                <label id="labelBusqueda" class="input-group-text futurama " for="inputGroupSelect01" >Autor</label>
-                <input type="text" className="form-control" id="busquedaAutor" placeholder="Autor" value={buscarAutor} onChange={(event) => { setBuscarAutor(event.target.value); habilitarButtonAutor(); }} />
+                    <label id="labelBusqueda" class="input-group-text futurama " for="inputGroupSelect01" >Autor</label>
+                    <input type="text" className="form-control" id="busquedaAutor" placeholder="Autor" value={buscarAutor} onChange={(event) => { setBuscarAutor(event.target.value); habilitarButtonAutor(); }} />
                     <br></br>
                     <button id="buscarAutor" type="submit" class="btn btn-dark" disabled> Buscar
                     </button>
@@ -134,15 +145,15 @@ export const TablaLibro = ({ listaLibros }) => {
                 <div className="form-floating">
                     <br></br>
                     <select class="form-select" id="busquedaGenero" value={buscarGen} onChange={(event) => { setBuscarGen(event.target.value); habilitarButtonGenero(); }}>
-                            <option value = "" selected>Seleccione un genero</option>
-                            <option value="Ficcion">Ficcion</option>
-                            <option value="Novela">Novela</option>
-                            <option value="Suspenso">Suspenso</option>
-                            <option value="Fantasia">Fantasia</option>
-                            <option value="Romance">Romance</option>
-                            <option value="Historia">Historia</option>
-                        </select>
-                        <label id = "gen" for="floatingSelect">Genero</label>
+                        <option value="" selected>Seleccione un genero</option>
+                        <option value="Ficcion">Ficcion</option>
+                        <option value="Novela">Novela</option>
+                        <option value="Suspenso">Suspenso</option>
+                        <option value="Fantasia">Fantasia</option>
+                        <option value="Romance">Romance</option>
+                        <option value="Historia">Historia</option>
+                    </select>
+                    <label id="gen" for="floatingSelect">Genero</label>
                     <br></br>
                     <button id="buscarGenero" type="submit" class="btn btn-dark" disabled> Buscar
                     </button>
@@ -213,7 +224,7 @@ export const TablaLibro = ({ listaLibros }) => {
                                         <td>{libro.autor}</td>
                                         <td>{libro.genero}</td>
                                         <td>
-                                            <button className="btn btn-success" onClick={informacion}> Informacion
+                                            <button className="btn btn-success" onClick={() => informacion(libro)}> Informacion
                                             </button>
                                         </td>
                                         <td>
@@ -257,7 +268,29 @@ export const TablaLibro = ({ listaLibros }) => {
                         margin-bottom: 20px
                     }
                     `}
+                <Modal
+                    isOpen={modalAbierto}
+                    onRequestClose={cerrarModal}
+                    style={{
+                        content: {
+                          width: '500px',
+                          height: '400px',
+                        },
+                      }}
+                >
+                    {libroSeleccionado && (
+                        <div className="ventana-emergente">
+                            <h2>Información del libro</h2>
+                            <p>Título: {libroSeleccionado.titulo}</p>
+                            <p>Autor: {libroSeleccionado.autor}</p>
+                            <p>Género: {libroSeleccionado.genero}</p>
+                            <p>Descripción del libro: {libroSeleccionado.descripcion}</p>
+                            <button onClick={cerrarModal}>Cerrar</button>
+                        </div>
+                    )}
+                </Modal>
             </style>
         </>
+
     );
 };
