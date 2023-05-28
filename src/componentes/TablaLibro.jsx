@@ -292,6 +292,7 @@ export const TablaLibro = ({ listaLibros }) => {
                         background-color: #AD9978;
                     }
                     
+                    
 
                     .futurama{
                         background-color: #222;
