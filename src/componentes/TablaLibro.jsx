@@ -49,7 +49,7 @@ export const TablaLibro = ({ listaLibros }) => {
 
     return (
         <>
-            <form onSubmit={buscarLibGen}>
+            <form onSubmit={buscarLibGen} className="color">
                 <br />
                 <div className="form-group input-group">
 
@@ -134,6 +134,14 @@ export const TablaLibro = ({ listaLibros }) => {
                         </table>
                     </div>
                 )}
+                <style>
+                    {`
+                    .color{
+                        background-color: #AD9978;
+                    }
+                    
+                    `}
+                </style>
         </>
     );
 };

@@ -30,9 +30,10 @@ export const FormularioLibro = ({ agregar }) => {
 
     return (
         <>
-            <h1 className="text-center text-light " style={{ fontSize: "100px", backgroundColor: "#AD9978" }}>Biblioteca</h1>
+            
             
                 <form onSubmit={guardarLibro} style={{ backgroundColor: "#AD9978" }}>
+                    <h1 className="text-center text-light " style={{ fontSize: "100px", backgroundColor: "#AD9978" }}>Biblioteca</h1>
                     <div className="form-group input-group">
                         <label class="input-group-text futurama " for="inputGroupSelect01" >Titulo</label>
                         <input type="text" className="form-control" id="titulo" placeholder="Titulo" value={titulo} onChange={(event) => setTitulo(event.target.value)} />
