@@ -287,17 +287,9 @@ export const TablaLibro = ({ listaLibros }) => {
                     .color{
                         background-color: #AD9978;
                     }
-                    .futurama{
-                        background-color: #222;
-                        color: #fff;
-                        padding: 8px 12px;
-                        border-radius: 4px;
-                        font-family: 'Arial', sans-serif;
-                        font-size: 14px;
-                        text-transform: uppercase;
-                    }  
+                    
                     `}
-            </style>
+                </style>
         </>
     );
 };
