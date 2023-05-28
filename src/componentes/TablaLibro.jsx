@@ -287,6 +287,9 @@ export const TablaLibro = ({ listaLibros }) => {
                     .color{
                         background-color: #AD9978;
                     }
+                    .table{
+                        background-color: #AD9978;
+                    }
                     
                     `}
                 </style>
