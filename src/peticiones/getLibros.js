@@ -5,9 +5,10 @@ export const getLibros = async () => {
     const data = await resp.json();
     
     const libroList = data.map(libro => ({
+      id : libro.id,
       titulo : libro.titulo,
       autor : libro.autor,
-      categoria : libro.categoria
+      genero : libro.genero
     }))
     return libroList;
     }

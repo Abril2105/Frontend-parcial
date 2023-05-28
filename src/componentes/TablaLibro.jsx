@@ -87,6 +87,7 @@ export const TablaLibro = ({ listaLibros }) => {
                             <tbody>
                                 {LibrosEncontradosGen.map((libro, index) => (
                                     <tr key={index}>
+                                        <td>{libro.id}</td>
                                         <td>{libro.titulo}</td>
                                         <td>{libro.autor}</td>
                                         <td>{libro.genero}</td>
