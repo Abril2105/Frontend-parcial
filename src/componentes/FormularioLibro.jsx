@@ -63,15 +63,16 @@ export const FormularioLibro = ({ agregar }) => {
             
             <div>
                 <form onSubmit={guardarLibro} style={{ backgroundColor: "#AD9978" }}>
-                    <h1 className="text-center text-dark " style={{ fontSize: "100px", backgroundColor: "#AD9978" }}>Biblioteca</h1>
+                    <h1 className="text-center text-dark " style={{ fontSize: "100px", backgroundColor: "#AD9978" }}>BIBLIOTECA</h1>
+                    <h2 id ="Busquedas" className="text-left text-dark " style={{ fontSize: "50px", backgroundColor: "#AD9978" }}>Registros</h2>
                     <div className="form-group input-group">
                         <label class="input-group-text futurama " for="inputGroupSelect01" >Titulo</label>
-                        <input type="text" className="form-control" id="titulo" placeholder="Titulo" value={titulo} onChange={(event) => setTitulo(event.target.value)} />
+                        <input type="text" className="form-control" id="titulo" placeholder="Titulo" value={titulo} onChange={(event) => { setTitulo(event.target.value); habilitarButton(); }}/>
                     </div>
                     <br />
                     <div className="form-group input-group ">
                         <label class="input-group-text futurama" for="inputGroupSelect01">Autor</label>
-                        <input type="text" className="form-control" id="autor" placeholder="Autor" value={autor} onChange={(event) => setAutor(event.target.value)} />
+                        <input type="text" className="form-control" id="autor" placeholder="Autor" value={autor} onChange={(event) => { setAutor(event.target.value); habilitarButton(); }}/>
                     </div>
 
 
@@ -79,7 +80,7 @@ export const FormularioLibro = ({ agregar }) => {
                     <br />
                     <div className="form-floating">
                         <select class="form-select" id="genero" value={genero} onChange={(event) => { setGenero(event.target.value); habilitarButton(); }}>
-                            <option selected>Seleccione un genero</option>
+                            <option value = "" selected>Seleccione un genero</option>
                             <option value="Ficcion">Ficcion</option>
                             <option value="Novela">Novela</option>
                             <option value="Suspenso">Suspenso</option>
@@ -91,7 +92,7 @@ export const FormularioLibro = ({ agregar }) => {
                     </div>
                     <br />
 
-                    <button id="registrar" type="submit" className="btn btn-primary" disabled>Registrar</button>
+                    <button id="registrar" type="submit" class="btn btn-dark" disabled>Registrar</button>
                 </form>
             </div>
 
@@ -117,9 +118,10 @@ export const FormularioLibro = ({ agregar }) => {
             font-family: 'Arial', sans-serif;
             font-size: 14px;
             text-transform: uppercase;
-            
           }
-        
+          #registrar {
+            margin-bottom: 20px
+          }
 
         `}
 
