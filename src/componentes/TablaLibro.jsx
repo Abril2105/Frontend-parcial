@@ -31,7 +31,7 @@ export const TablaLibro = ({ listaLibros }) => {
 
     function deleteRow(event) {
         const row = event.target.parentNode.parentNode;
-        const idCell = row.querySelector('td:first-child');//toma la primera data de el respectivo row lo que seria el id
+        const idCell = row.querySelector('td:first-child');
         const id = idCell.textContent.trim();
 
         fetch(`http://localhost:8080/libro/eliminar/${id}`, {
