@@ -357,9 +357,9 @@ export const TablaLibro = ({ listaLibros }) => {
                     )}
                 </Modal>
 
-                    }  
+                      
 
-                    `}
+                    
 
             </style>
         </>
