@@ -285,6 +285,7 @@ export const TablaLibro = ({ listaLibros }) => {
                             <p>Autor: {libroSeleccionado.autor}</p>
                             <p>Género: {libroSeleccionado.genero}</p>
                             <p>Descripción del libro: {libroSeleccionado.descripcion}</p>
+                            
                             <button onClick={cerrarModal}>Cerrar</button>
                         </div>
                     )}
