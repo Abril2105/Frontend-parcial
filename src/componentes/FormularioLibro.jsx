@@ -7,7 +7,7 @@ export const FormularioLibro = ({ agregar }) => {
     const [genero, setGenero] = useState("");
     const [descripcion, setDescripcion] = useState("");
 
-    const guardarLibro = (event) => {
+    const guardarLibro = () => {
         let libro = {
             id: id,
             titulo: titulo,
