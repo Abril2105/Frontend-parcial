@@ -4,6 +4,7 @@ import { TablaLibro } from "./componentes/TablaLibro";
 import { getLibros } from "./peticiones/getLibros";
 import { postLibro } from "./peticiones/postLibro";
 import { editarLibro } from "./peticiones/editarLibro";
+import backgroundImage from './biblioteca.jpg';
 
 
 
@@ -38,17 +39,19 @@ export const LibrosApp = () => {
                 return (
                     <div
                         style={{
-                            backgroundColor: "#AD9978",
                             width: "100vw",
                             height: "100vh",
                             display: "flex",
-                            justifyContent: "center",
+                            
                             alignItems: "center",
                             color: "black",
-                            fontSize: "10"
+                            fontSize: "10",
+                            backgroundImage: `url(${backgroundImage})`,
+                            backgroundPosition: 'center center',
+                            backgroundSize: 'cover'
+
                         }}
                     >
-                        <h1>Bienvenido a la Biblioteca</h1>
                     </div>
                     
                 );
@@ -66,7 +69,7 @@ export const LibrosApp = () => {
         <>
             <nav className="navbar navbar-expand-lg bg-light">
                 <div className="container-fluid">
-                    <a className="navbar-brand">NAVEGADOR</a>
+                <a href="LibroApp.jsx" className="logo"><img src='./Logo.jpg' alt="Logo" /></a>
                     <button
                         className="navbar-toggler"
                         type="button"
