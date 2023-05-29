@@ -22,7 +22,7 @@ export const HomeLibro = () => {
                         color: "#B4A57A",
                         height: "30vh",
                     }}><br />BIENVENIDOS</h1>
-                <h2 style={{ textAlign: "center", color: "white", }}>Libros destacados</h2>
+                <h2 style={{ textAlign: "center", color: "black", }}>Libros destacados</h2>
                 <div className="contenedor">
                     <article className="destacados">
                         <br />
