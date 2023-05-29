@@ -273,31 +273,51 @@ export const TablaLibro = ({ listaLibros }) => {
                                     <th scope="col">Titulo</th>
                                     <th scope="col">Autor</th>
                                     <th scope="col">Genero</th>
+                                    <th scope="col">Informacion</th>
+                                    <th scope="col">Eliminar</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {LibrosEncontradosGen.map((libro, index) => (
-                                    <tr key={index}>
+                                {LibrosEncontradosGen.map((libro) => (
+                                    <tr>
                                         <td>{libro.id}</td>
                                         <td>{libro.titulo}</td>
                                         <td>{libro.autor}</td>
                                         <td>{libro.genero}</td>
+                                        <td>
+                                        <button className="btn btn-success" onClick={() => informacion(libro)}> Informacion </button>
+                                        </td>
+                                        <td>
+                                            <button className="btn btn-danger" onClick={deleteRow}> Eliminar</button>
+                                        </td>
                                     </tr>
                                 ))}
-                                {LibrosEncontradosTitulo.map((libro, index) => (
-                                    <tr key={index}>
+                                {LibrosEncontradosTitulo.map((libro) => (
+                                    <tr>
                                         <td>{libro.id}</td>
                                         <td>{libro.titulo}</td>
                                         <td>{libro.autor}</td>
                                         <td>{libro.genero}</td>
+                                        <td>
+                                        <button className="btn btn-success" onClick={() => informacion(libro)}> Informacion </button>
+                                        </td>
+                                        <td>
+                                            <button className="btn btn-danger" onClick={deleteRow}> Eliminar</button>
+                                        </td>
                                     </tr>
                                 ))}
-                                {LibrosEncontradosAutor.map((libro, index) => (
-                                    <tr key={index}>
+                                {LibrosEncontradosAutor.map((libro) => (
+                                    <tr>
                                         <td>{libro.id}</td>
                                         <td>{libro.titulo}</td>
                                         <td>{libro.autor}</td>
                                         <td>{libro.genero}</td>
+                                        <td>
+                                        <button className="btn btn-success" onClick={() => informacion(libro)}> Informacion </button>
+                                        </td>
+                                        <td>
+                                            <button className="btn btn-danger" onClick={deleteRow}> Eliminar</button>
+                                        </td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -319,21 +339,16 @@ export const TablaLibro = ({ listaLibros }) => {
                             </thead>
                             <tbody>
                                 {listaLibros.map((libro) => (
-                                    <tr key={libro.genero}>
+                                    <tr>
                                         <td>{libro.id}</td>
                                         <td>{libro.titulo}</td>
                                         <td>{libro.autor}</td>
                                         <td>{libro.genero}</td>
                                         <td>
-
-                                            <button className="btn btn-success" onClick={() => informacion(libro)}> Informacion
-
-
-                                            </button>
+                                            <button className="btn btn-success" onClick={() => informacion(libro)}> Informacion </button>
                                         </td>
                                         <td>
-                                            <button className="btn btn-danger" onClick={deleteRow}> Eliminar
-                                            </button>
+                                            <button className="btn btn-danger" onClick={deleteRow}> Eliminar</button>
                                         </td>
 
                                     </tr>
