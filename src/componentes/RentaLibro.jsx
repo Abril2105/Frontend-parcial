@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { TablaLibro } from './TablaLibro';
+import backgroundImage from '../biblioteca.jpg';
+import '../estilo.css'
 export const RentaLibro = () => {
 
     const [inicioReserva, setInicioReserva] = useState('');
@@ -27,10 +29,22 @@ export const RentaLibro = () => {
     };
 
     return (
-        
        
         <div>
-            
+            <div
+            style={{
+                backgroundColor: "#AD9978"
+            }}
+        >
+            </div>
+            <h1 className="text-center" style={{
+                        fontSize: "60px", backgroundImage: `url(${backgroundImage})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        fontWeight: "bold",
+                        color: "#B4A57A",
+                        height: "30vh",
+                    }}><br />RENTAS</h1> 
             <form>
                 <div className="form-floating">
 
@@ -55,10 +69,11 @@ export const RentaLibro = () => {
                         return null;
                     })}
                 </select>
+                <label for="floatingSelect">Dia Final</label>
                 </div>
                 {error && <p>{error}</p>}
             </form>
-        </div>
+            </div>
     );
 
 }
