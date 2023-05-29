@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
 import { FormularioLibro } from "./componentes/FormularioLibro";
 import { TablaLibro } from "./componentes/TablaLibro";
+import { HomeLibro } from "./componentes/HomeLibro";
+import { RentaLibro } from "./componentes/RentaLibro";
 import { getLibros } from "./peticiones/getLibros";
 import { postLibro } from "./peticiones/postLibro";
-import { editarLibro } from "./peticiones/editarLibro";
 
 export const LibrosApp = () => {
 
@@ -14,51 +15,39 @@ export const LibrosApp = () => {
     const agregarLibro = (libro) => {
         setLibros([...libros, libro])
         postLibro(libro);
+        setCurrentPage("formulario");
     }
     const cargueLibros = async () => {
         const datos = await getLibros()
         setLibros(datos)
+        setCurrentPage("formulario");
     }
     useEffect(() => {
         cargueLibros();
     }, [])
-    const editarLibros = (libro) => {
-        console.log(libro);
-        setLibros(libro);
-    }
     const cambiarPagina = (pagina) => {
         setCurrentPage(pagina);
     };
 
+    
+
     const renderContent = () => {
         switch (currentPage) {
-            case "formulario":
-                return (
-                    <div
-                        style={{
-                            backgroundColor: "#AD9978",
-                            width: "100vw",
-                            height: "100vh",
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            color: "black",
-                            fontSize: "10"
-                        }}
-                    >
-                        <h1>Bienvenido a la Biblioteca</h1>
-                    </div>
-                    
-                );
-            default:
-                return (
-                    <>
-                        <FormularioLibro agregar={agregarLibro} />
-                        <TablaLibro listaLibros={libros}/>
-                    </>
-                );
+          case "home":
+            return <HomeLibro/>;
+          case "formulario":
+            return (
+              <>
+                <FormularioLibro agregar={agregarLibro} />
+                <TablaLibro listaLibros={libros} />
+              </>
+            );
+            case "rentas":
+                return <RentaLibro/>
+          default:
+            return null;
         }
-    };
+      };
 
     return (
         <>
@@ -83,7 +72,7 @@ export const LibrosApp = () => {
                                     className={`nav-link btn ${currentPage === "home" ? "active" : ""}`}
                                     onClick={() => cambiarPagina("home")}
                                 >
-                                    Formulario Libro
+                                    Home
                                 </button>
                             </li>
                             <li className="nav-item">
@@ -91,7 +80,7 @@ export const LibrosApp = () => {
                                     className={`nav-link btn ${currentPage === "formulario" ? "active" : ""}`}
                                     onClick={() => cambiarPagina("formulario")}
                                 >
-                                    Home
+                                    Formulario Libros 
                                 </button>
                             </li>
                             <li className="nav-item">
