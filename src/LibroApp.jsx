@@ -53,7 +53,7 @@ export const LibrosApp = () => {
         <>
             <nav className="navbar navbar-expand-lg bg-light">
                 <div className="container-fluid">
-                    <a className="navbar-brand">NAVEGADOR</a>
+                <a href="HomeLibro.jsx" className="logo"><img src='./Logo.jpg' alt="Logo" /></a>
                     <button
                         className="navbar-toggler"
                         type="button"
@@ -80,7 +80,9 @@ export const LibrosApp = () => {
                                     className={`nav-link btn ${currentPage === "formulario" ? "active" : ""}`}
                                     onClick={() => cambiarPagina("formulario")}
                                 >
-                                    Formulario
+
+                                    Formulario Libros 
+
                                 </button>
                             </li>
                             <li className="nav-item">

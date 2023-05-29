@@ -219,7 +219,7 @@ export const TablaLibro = ({ listaLibros }) => {
 
     return (
         <>
-            <h2 id="Busquedas" className="text-left text-dark" style={{ fontSize: "50px", margin: "0", padding: "0" }}>Busquedas</h2>
+            <h2 id="Busquedas" className="text-left text-dark" style={{ fontSize: "30px", margin: "0", padding: "0", }}>Búsquedas</h2>
             <div className="form-floating">
                 <select class="form-select" id="busquedaTipo" value={busqueda} onChange={(event) => { setBusqueda(event.target.value); busquedaGeneral(); }}>
                     <option value="" selected>Seleccione un tipo de busqueda</option>
@@ -288,7 +288,9 @@ export const TablaLibro = ({ listaLibros }) => {
                                         <td>{libro.autor}</td>
                                         <td>{libro.genero}</td>
                                         <td>
-                                            <button className="btn btn-success" onClick={() => informacion(libro)}> Informacion </button>
+
+                                        <button className="btn btn-success" onClick={() => informacion(libro)}> Informacion </button>
+
                                         </td>
                                     </tr>
                                 ))}
@@ -299,7 +301,9 @@ export const TablaLibro = ({ listaLibros }) => {
                                         <td>{libro.autor}</td>
                                         <td>{libro.genero}</td>
                                         <td>
-                                            <button className="btn btn-success" onClick={() => informacion(libro)}> Informacion </button>
+
+                                        <button className="btn btn-success" onClick={() => informacion(libro)}> Informacion </button>
+
                                         </td>
                                     </tr>
                                 ))}
@@ -310,7 +314,9 @@ export const TablaLibro = ({ listaLibros }) => {
                                         <td>{libro.autor}</td>
                                         <td>{libro.genero}</td>
                                         <td>
-                                            <button className="btn btn-success" onClick={() => informacion(libro)}> Informacion </button>
+
+                                        <button className="btn btn-success" onClick={() => informacion(libro)}> Informacion </button>
+
                                         </td>
                                     </tr>
                                 ))}
