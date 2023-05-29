@@ -27,6 +27,7 @@ export const TablaLibro = ({ listaLibros }) => {
     const [LibrosEncontradosAutor, setLibrosEncontradosAutor] = useState([]);
 
     function deleteRow(event) {
+        event.preventDefault();
         const row = event.target.parentNode.parentNode;
         const idCell = row.querySelector('td:first-child');
         const id = idCell.textContent.trim();
@@ -183,6 +184,8 @@ export const TablaLibro = ({ listaLibros }) => {
         document.getElementById("buscarTitulo").style.display = "none"
         document.getElementById("volverTitulo").style.display = "none"
         document.getElementById("floatingBus").style.display = "block"
+        limpiarBusqueda();
+        setBuscarTitulo("");
         setBusqueda("");
     }
 
@@ -194,6 +197,8 @@ export const TablaLibro = ({ listaLibros }) => {
         document.getElementById("buscarAutor").style.display = "none"
         document.getElementById("volverAutor").style.display = "none"
         document.getElementById("floatingBus").style.display = "block"
+        limpiarBusqueda();
+        setBuscarAutor("");
         setBusqueda("");
     }
 
@@ -205,6 +210,7 @@ export const TablaLibro = ({ listaLibros }) => {
         document.getElementById("buscarGenero").style.display = "none"
         document.getElementById("volverGenero").style.display = "none"
         document.getElementById("floatingBus").style.display = "block"
+        limpiarBusqueda();
         setBuscarGen("");
         setBusqueda("");
     }
@@ -274,7 +280,6 @@ export const TablaLibro = ({ listaLibros }) => {
                                     <th scope="col">Autor</th>
                                     <th scope="col">Genero</th>
                                     <th scope="col">Informacion</th>
-                                    <th scope="col">Eliminar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -287,9 +292,6 @@ export const TablaLibro = ({ listaLibros }) => {
                                         <td>
                                         <button className="btn btn-success" onClick={() => informacion(libro)}> Informacion </button>
                                         </td>
-                                        <td>
-                                            <button className="btn btn-danger" onClick={deleteRow}> Eliminar</button>
-                                        </td>
                                     </tr>
                                 ))}
                                 {LibrosEncontradosTitulo.map((libro) => (
@@ -301,9 +303,6 @@ export const TablaLibro = ({ listaLibros }) => {
                                         <td>
                                         <button className="btn btn-success" onClick={() => informacion(libro)}> Informacion </button>
                                         </td>
-                                        <td>
-                                            <button className="btn btn-danger" onClick={deleteRow}> Eliminar</button>
-                                        </td>
                                     </tr>
                                 ))}
                                 {LibrosEncontradosAutor.map((libro) => (
@@ -314,9 +313,6 @@ export const TablaLibro = ({ listaLibros }) => {
                                         <td>{libro.genero}</td>
                                         <td>
                                         <button className="btn btn-success" onClick={() => informacion(libro)}> Informacion </button>
-                                        </td>
-                                        <td>
-                                            <button className="btn btn-danger" onClick={deleteRow}> Eliminar</button>
                                         </td>
                                     </tr>
                                 ))}
