@@ -232,7 +232,7 @@ export const TablaLibro = ({ listaLibros }) => {
             </div>
 
             <form onSubmit={buscarLibTitulo} >
-                <div className="form-group input-group">
+                <div className="form-group input-group" id="filtroTitulo">
                     <label style={{ display: "none" }} id="busTitulo" class="input-group-text futurama " for="inputGroupSelect01" >Titulo</label>
                     <input style={{ display: "none" }} type="text" className="form-control" id="busquedaTitulo" placeholder="Titulo" value={buscarTitulo} onChange={(event) => { setBuscarTitulo(event.target.value); habilitarButtonTitulo(); }} />
                     <button style={{ display: "none" }} id="buscarTitulo" type="submit" class="btn btn-dark" disabled> Buscar</button>
@@ -241,7 +241,7 @@ export const TablaLibro = ({ listaLibros }) => {
             </form>
 
             <form onSubmit={buscarLibAutor}>
-                <div className="form-group input-group">
+                <div className="form-group input-group" id="filtroAutor">
                     <label style={{ display: "none" }} id="busAutor" class="input-group-text futurama " for="inputGroupSelect01" >Autor</label>
                     <input style={{ display: "none" }} type="text" className="form-control" id="busquedaAutor" placeholder="Autor" value={buscarAutor} onChange={(event) => { setBuscarAutor(event.target.value); habilitarButtonAutor(); }} />
                     <button style={{ display: "none" }} id="buscarAutor" type="submit" class="btn btn-dark" disabled> Buscar</button>
@@ -250,10 +250,9 @@ export const TablaLibro = ({ listaLibros }) => {
             </form>
 
             <form onSubmit={buscarLibGen}>
-                <div className="form-floating">
+                <div className="form-floating input-group" id="filtroGenero">
                     <select style={{ display: "none" }} class="form-select" id="busquedaGenero" value={buscarGen} onChange={(event) => { setBuscarGen(event.target.value); habilitarButtonGenero(); }}>
-
-                        <option value="" selected>Seleccione un genero</option>
+                        <option value="" selected>Seleccione una categoria</option>
                         <option value="Ficcion">Ficcion</option>
                         <option value="Novela">Novela</option>
                         <option value="Suspenso">Suspenso</option>
@@ -261,10 +260,9 @@ export const TablaLibro = ({ listaLibros }) => {
                         <option value="Romance">Romance</option>
                         <option value="Historia">Historia</option>
                     </select>
-                    <label style={{ display: "none" }} id="busGenero" for="floatingSelect">Genero</label>
+                    <label style={{ display: "none" }} id="busGenero" for="floatingSelect">Categoria</label>
                     <button style={{ display: "none" }} id="buscarGenero" type="submit" class="btn btn-dark" disabled> Buscar</button>
                     <button style={{ display: "none" }} id="volverGenero" type="submit" class="btn btn-dark" onClick={volverGenero}> Volver</button>
-
                 </div>
             </form>
 
@@ -290,7 +288,7 @@ export const TablaLibro = ({ listaLibros }) => {
                                         <td>{libro.autor}</td>
                                         <td>{libro.genero}</td>
                                         <td>
-                                        <button className="btn btn-success" onClick={() => informacion(libro)}> Informacion </button>
+                                            <button className="btn btn-success" onClick={() => informacion(libro)}> Informacion </button>
                                         </td>
                                     </tr>
                                 ))}
@@ -301,7 +299,7 @@ export const TablaLibro = ({ listaLibros }) => {
                                         <td>{libro.autor}</td>
                                         <td>{libro.genero}</td>
                                         <td>
-                                        <button className="btn btn-success" onClick={() => informacion(libro)}> Informacion </button>
+                                            <button className="btn btn-success" onClick={() => informacion(libro)}> Informacion </button>
                                         </td>
                                     </tr>
                                 ))}
@@ -312,7 +310,7 @@ export const TablaLibro = ({ listaLibros }) => {
                                         <td>{libro.autor}</td>
                                         <td>{libro.genero}</td>
                                         <td>
-                                        <button className="btn btn-success" onClick={() => informacion(libro)}> Informacion </button>
+                                            <button className="btn btn-success" onClick={() => informacion(libro)}> Informacion </button>
                                         </td>
                                     </tr>
                                 ))}
@@ -363,18 +361,15 @@ export const TablaLibro = ({ listaLibros }) => {
                     .table{
                         background-color: #AD9978;
                     }
-
-                    .futurama{
-                        background-color: #222;
-                        color: #fff;
-                        padding: 8px 12px;
-                        border-radius: 4px;
-                        font-family: 'Arial', sans-serif;
-                        font-size: 14px;
-                        text-transform: uppercase;
-                    }  
-                    Body {Background-color : #AD9978;}
-
+                    Body {
+                        Background-color : #AD9978;
+                    }
+                    #busquedaTipo {
+                        margin-top: 10px;
+                    }
+                    #filtroGenero {
+                        margin-bottom: 10px
+                    }
                     `}
                 <Modal
                     isOpen={modalAbierto}
