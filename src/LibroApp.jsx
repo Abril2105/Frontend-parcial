@@ -5,8 +5,6 @@ import { getLibros } from "./peticiones/getLibros";
 import { postLibro } from "./peticiones/postLibro";
 import { editarLibro } from "./peticiones/editarLibro";
 
-
-
 export const LibrosApp = () => {
 
     const [libros, setLibros] = useState([]);
@@ -56,7 +54,7 @@ export const LibrosApp = () => {
                 return (
                     <>
                         <FormularioLibro agregar={agregarLibro} />
-                        <TablaLibro listaLibros={libros} />
+                        <TablaLibro listaLibros={libros}/>
                     </>
                 );
         }
