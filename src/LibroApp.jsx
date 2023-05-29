@@ -80,7 +80,9 @@ export const LibrosApp = () => {
                                     className={`nav-link btn ${currentPage === "formulario" ? "active" : ""}`}
                                     onClick={() => cambiarPagina("formulario")}
                                 >
+
                                     Formulario Libros 
+
                                 </button>
                             </li>
                             <li className="nav-item">

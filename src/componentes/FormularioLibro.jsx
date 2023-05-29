@@ -68,7 +68,7 @@ export const FormularioLibro = ({ agregar }) => {
                     </div>
                     <br />
                     <div className="form-group input-group ">
-                        <label class="input-group-text futurama" for="inputGroupSelect01">Descripcion del libro</label>
+                        <label class="input-group-text futurama" for="inputGroupSelect01">Descripcion</label>
                         <input type="text" className="form-control" id="descripcion" placeholder="Descripcion" value={descripcion} onChange={(event) => setDescripcion(event.target.value)} />
                     </div>
 
@@ -77,7 +77,9 @@ export const FormularioLibro = ({ agregar }) => {
                     <br />
                     <div className="form-floating">
                         <select class="form-select" id="genero" value={genero} onChange={(event) => { setGenero(event.target.value); habilitarButton(); }}>
-                            <option value="" selected>Seleccione un genero</option>
+
+
+                            <option value = "" selected>Seleccione una categoria</option>
                             <option value="Ficcion">Ficcion</option>
                             <option value="Novela">Novela</option>
                             <option value="Suspenso">Suspenso</option>
@@ -86,7 +88,7 @@ export const FormularioLibro = ({ agregar }) => {
                             <option value="Historia">Historia</option>
 
                         </select>
-                        <label for="floatingSelect">Genero</label>
+                        <label for="floatingSelect">Categoria</label>
                     </div>
                     <br />
 
