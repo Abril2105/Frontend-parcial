@@ -1,0 +1,34 @@
+.destacados {
+    display: flex;
+    justify-content: space-evenly;
+    width: 80%; 
+    align-items: flex;
+  }
+  
+.libro{
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start; 
+    text-align: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 15px;
+    width: 20vw;
+    height: auto;
+    margin: 15px;
+    font-family: 'Phoenica Std Regular', sans-serif;
+  }
+.contenedor{
+        display: flex;
+        justify-content: center;
+}
+.img1{
+    height: 25vh;
+}
+@font-face {
+    font-family: 'Phoenica Std Regular';
+    src: url(phoenica-regular.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }

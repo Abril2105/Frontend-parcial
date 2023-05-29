@@ -53,7 +53,7 @@ export const LibrosApp = () => {
         <>
             <nav className="navbar navbar-expand-lg bg-light">
                 <div className="container-fluid">
-                <a href="LibroApp.jsx" className="logo"><img src='./Logo.jpg' alt="Logo" /></a>
+                <a href="HomeLibro.jsx" className="logo"><img src='./Logo.jpg' alt="Logo" /></a>
                     <button
                         className="navbar-toggler"
                         type="button"
