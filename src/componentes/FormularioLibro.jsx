@@ -1,4 +1,6 @@
 import { useState } from "react"
+import backgroundImage from '../biblioteca.jpg';
+
 
 export const FormularioLibro = ({ agregar }) => {
     const [id, setId] = useState("");
@@ -45,18 +47,24 @@ export const FormularioLibro = ({ agregar }) => {
         <>
             <div>
                 <form onSubmit={guardarLibro} style={{ backgroundColor: "#AD9978" }}>
-                    <h1 className="text-center text-dark " style={{ fontSize: "100px", backgroundColor: "#AD9978" }}>BIBLIOTECA</h1>
-
-                    <h2 id ="Busquedas" className="text-left text-dark " style={{ fontSize: "50px", backgroundColor: "#AD9978" }}>Registros</h2>
+                <h1 className="text-center" style={{
+                        fontSize: "60px", backgroundImage: `url(${backgroundImage})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        fontWeight: "bold",
+                        color: "#B4A57A",
+                        height: "30vh",
+                    }}><br />BIBLIOTECA</h1>
+                    <h2 id="Busquedas" className="text-left text-dark " style={{ fontSize: "30px", backgroundColor: "#AD9978", }}>Registros</h2>
 
                     <div className="form-group input-group">
                         <label class="input-group-text futurama " for="inputGroupSelect01" >Titulo</label>
-                        <input type="text" className="form-control" id="titulo" placeholder="Titulo" value={titulo} onChange={(event) => { setTitulo(event.target.value); habilitarButton(); }}/>
+                        <input type="text" className="form-control" id="titulo" placeholder="Titulo" value={titulo} onChange={(event) => { setTitulo(event.target.value); habilitarButton(); }} />
                     </div>
                     <br />
                     <div className="form-group input-group ">
                         <label class="input-group-text futurama" for="inputGroupSelect01">Autor</label>
-                        <input type="text" className="form-control" id="autor" placeholder="Autor" value={autor} onChange={(event) => { setAutor(event.target.value); habilitarButton(); }}/>
+                        <input type="text" className="form-control" id="autor" placeholder="Autor" value={autor} onChange={(event) => { setAutor(event.target.value); habilitarButton(); }} />
                     </div>
                     <br />
                     <div className="form-group input-group ">
@@ -69,7 +77,7 @@ export const FormularioLibro = ({ agregar }) => {
                     <br />
                     <div className="form-floating">
                         <select class="form-select" id="genero" value={genero} onChange={(event) => { setGenero(event.target.value); habilitarButton(); }}>
-                            <option value = "" selected>Seleccione un genero</option>
+                            <option value="" selected>Seleccione un genero</option>
                             <option value="Ficcion">Ficcion</option>
                             <option value="Novela">Novela</option>
                             <option value="Suspenso">Suspenso</option>
